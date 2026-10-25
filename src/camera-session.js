@@ -20,14 +20,15 @@ export function createCameraSession({ getUserMedia, getVideo, requestFrame, canc
       stream = media;
       const video = getVideo();
       if (!video) throw new Error('The camera preview is unavailable. Please try again.');
-      video.muted = true; video.playsInline = true; video.srcObject = media;
+      // React may not have committed the live state yet. Reveal before asking Safari to play.
+      video.hidden = false; video.muted = true; video.playsInline = true; video.srcObject = media;
       onState('live');
       await video.play();
       if (current !== generation) return;
       const poll = () => {
         if (current !== generation) return;
         try {
-          const value = video.readyState >= 2 && video.videoWidth ? decode(video) : null;
+          const value = video.readyState >= 2 && video.videoWidth > 0 && video.videoHeight > 0 ? decode(video) : null;
           if (value) { stop(); onRead(value); return; }
           frame = requestFrame(poll);
         } catch (error) { stop(); onError(error); }

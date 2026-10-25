@@ -14,9 +14,9 @@ function decodeImage(source, width, height, maxWidth) {
 }
 
 export function Scanner({ onRead }) {
-  const video = useRef(null), file = useRef(null), session = useRef(null), callbacks = useRef(null);
+  const video = useRef(null), file = useRef(null), photo = useRef(null), session = useRef(null), callbacks = useRef(null);
   const [state, setState] = useState('idle'), [message, setMessage] = useState(''), [error, setError] = useState(false);
-  const fail = problem => { setError(true); setMessage(cameraErrorMessage(problem)); };
+  const fail = problem => { setError(true); setMessage(`${cameraErrorMessage(problem)} (${problem.name || 'Error'})`); };
   const read = value => { setError(false); setMessage('QR read. Camera stopped. Review the check-in result below.'); onRead(value); };
   callbacks.current = { read, fail };
   useEffect(() => {
@@ -52,9 +52,12 @@ export function Scanner({ onRead }) {
   return <>
     <div className={`scanner-window ${state === 'live' ? 'live' : ''}`}>
       <video ref={video} autoPlay playsInline muted hidden={state !== 'live'} aria-label="QR camera preview"/>
-      {state !== 'live' && <><span className="scan-corners"><QrCode size={70} strokeWidth={1.2}/></span><h3>{state === 'opening' ? 'Opening your camera…' : 'One scan. Everything in place.'}</h3><p>{state === 'opening' ? 'Check Safari’s camera permission prompt.' : 'Scan a personal Jump-off Pass to check its status.'}</p></>}
+      {state !== 'live' && <><span className="scan-corners"><QrCode size={70} strokeWidth={1.2}/></span><h3>{state === 'opening' ? 'Opening your camera…' : error ? 'Camera needs another try.' : 'One scan. Everything in place.'}</h3><p>{state === 'opening' ? 'Check Safari’s camera permission prompt.' : message || 'Scan a personal Jump-off Pass to check its status.'}</p></>}
       <span className="scanner-corner tl"/><span className="scanner-corner tr"/><span className="scanner-corner bl"/><span className="scanner-corner br"/>
     </div>
+    <button className="button primary full camera-photo-button" onClick={() => { session.current.stop(); setError(false); setMessage('Take a clear photo of the complete QR, then choose Use Photo.'); photo.current.click(); }}><Camera size={17}/> Take QR photo</button>
+    <input ref={photo} type="file" accept="image/*" capture="environment" hidden onChange={upload}/>
+    <p className="small muted">On your phone, take a photo of the pass shown on another screen. Or use the live scanner below.</p>
     <div className="button-row"><button className="button primary grow" onClick={active ? () => {session.current.stop();setMessage('Camera stopped. You can upload a QR or use a booking reference.');} : start}>{active ? <X size={17}/> : <Camera size={17}/>} {state === 'opening' ? 'Cancel camera' : active ? 'Stop camera' : 'Open camera'}</button><button className="button secondary grow" onClick={() => file.current.click()}><Upload size={17}/> Upload QR</button><input ref={file} type="file" accept="image/png,image/jpeg,image/webp" hidden onChange={upload}/></div>
     {message && <p className={`scanner-feedback ${error ? 'error' : ''}`} role={error ? 'alert' : 'status'}>{message}</p>}
     <p className="small muted">For this demo, create the booking and validate it in the same browser. You can show its saved QR on another screen, upload it here, or use the reference below.</p>

@@ -54,3 +54,7 @@ Technical references: [WebKit inline video and playback policy](https://webkit.o
 - **Marti:** refresh the live release, do one physical iPhone retry, then capture the working price-drop → payment → pass → organizer sequence. Spend at most a few minutes on camera; use the verified fallback if needed.
 - **Carlos:** record problem/value and the pitch now, assemble the screens, confirm official video length and submission format, and submit with a buffer. Pitch/video files and event requirements have not been inspected in this review.
 - **Both:** present Codex's actual iterations/tests as AI mastery. Trail recommendations are rules-based; simulated badges and alert previews are not real verification or emergency services.
+
+### Follow-up camera retry
+
+The first update did not resolve Marti's physical iPhone symptom. Two further startup guards now pass regression tests (visible video before play; valid width and height before decoding), with 34 tests passing overall. **Take QR photo** adds a camera-picker alternative using the same image decoder as upload. Keep the same-browser booking rule. Neither physical iPhone path is certified by desktop automation; recording should still use the verified reference/load-booking route if needed. Error text is now repeated inside the preview so it is not hidden below the phone viewport. No additional device retry is required to continue recording.

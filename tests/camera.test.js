@@ -6,7 +6,7 @@ function harness(overrides = {}) {
   const states=[], reads=[], errors=[], frames=[];
   let stopped=0;
   const media={getTracks:()=>[{stop:()=>stopped++}]};
-  const video={readyState:2,videoWidth:200,play:async()=>{}};
+  const video={readyState:2,videoWidth:200,videoHeight:150,play:async()=>{}};
   const session=createCameraSession({getUserMedia:async()=>media,getVideo:()=>video,requestFrame:fn=>{frames.push(fn);return frames.length;},cancelFrame:()=>{},decode:()=>null,onState:v=>states.push(v),onRead:v=>reads.push(v),onError:e=>errors.push(e),...overrides});
   return {session,video,media,states,reads,errors,frames,get stopped(){return stopped;}};
 }
@@ -34,4 +34,23 @@ test('decoder failure releases the camera and provides a recoverable error',asyn
 test('permission rejection is reported without scheduling frames',async()=>{
   const h=harness({getUserMedia:async()=>{throw Object.assign(new Error('Denied'),{name:'NotAllowedError'});}});await h.session.start();
   assert.equal(h.errors[0].name,'NotAllowedError');assert.equal(h.frames.length,0);
+});
+
+test('the preview is visible before playback begins', async () => {
+  let hiddenAtPlay;
+  const video = { hidden: true, play: async () => { hiddenAtPlay = video.hidden; } };
+  const h = harness({ getVideo: () => video });
+  await h.session.start();
+  assert.equal(hiddenAtPlay, false);
+});
+
+test('camera waits for both frame dimensions before decoding', async () => {
+  let decoded = 0;
+  const video = { readyState: 2, videoWidth: 640, videoHeight: 0, play: async () => {} };
+  const h = harness({ getVideo: () => video, decode: () => { decoded++; } });
+  await h.session.start(); h.frames.shift()();
+  assert.equal(decoded, 0);
+  assert.equal(h.stopped, 0);
+  video.videoHeight = 480; h.frames.shift()();
+  assert.equal(decoded, 1);
 });

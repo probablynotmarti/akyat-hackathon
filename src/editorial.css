@@ -17,3 +17,5 @@ body{background:var(--paper)}h1,h2,h3,h4{font-weight:700}.rust-text{color:inheri
 .effort-analogy{font-size:13px;line-height:1.7;color:#55624e;background:#e9eddf;padding:16px;border-radius:10px;margin-bottom:24px}
 
 .scanner-window video[hidden]{display:none}.scanner-feedback{font-size:13px;line-height:1.6;margin:14px 0;padding:12px 14px;background:#eef1e8;border-radius:8px}.scanner-feedback.error{background:#fff1e8;color:#7b3823}.scan-result:focus{outline:2px solid #65764f;outline-offset:4px}
+
+.camera-photo-button{margin-top:14px}.scanner-window>p{max-width:40em;line-height:1.6;color:#53634b}

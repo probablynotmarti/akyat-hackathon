@@ -22,3 +22,5 @@ From the application root, run npm test and npm run build. Copy dist into the ex
 ## Organizer readiness update — 2026-10-25
 
 Published camera-session feedback/cleanup, visible QR results, paid-booking organizer callback and upper-bound expected return fixes to the same public alias. Deployment: https://akyat-hackathon-marti-2026-9i1pbnlij.vercel.app. Production alias: https://akyat-hackathon-marti-2026.vercel.app. The live organizer screen shows the new same-browser guidance and rejects invitation/unknown references. Physical iPhone camera capture remains pending a user retry.
+
+Camera follow-up deployed to https://akyat-hackathon-marti-2026-l1l837djf.vercel.app and the same public alias. Build index-B_Y3fw8Z.js / index-D4c_ocIq.css. The new Take QR photo picker was exercised on the live site with a generated QR image; decoding succeeded and the reference was correctly rejected as belonging to the separate local rehearsal browser. This verifies the picker-to-decoder flow, not physical iPhone camera capture. Mobile layout checked at 390×844.
