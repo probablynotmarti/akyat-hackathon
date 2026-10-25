@@ -3,7 +3,7 @@
 ## Audience and journey
 New hikers, foreign visitors, and current hikers. The demo follows a first-time hiker who lacks companions and is unfamiliar with registration. Clear English, PHP pricing, Philippine local dates/times, and international phone formatting.
 
-Discover a suitable departure → optional readiness check → join a scheduled party → invite friends through a public link/QR → see the estimated guide share fall → registration closes and price locks → complete requirements and simulated payment → receive a personal Jump-off Pass → organizer validates and checks in.
+First-visit welcome → local demo registration/login → hiking preferences → explained suggestion → discover a suitable departure → optional readiness check → join a scheduled party → invite friends through a public link/QR → see the estimated guide share fall → registration closes and price locks → complete requirements and simulated payment → receive a personal Jump-off Pass → organizer validates and checks in.
 
 ## Pricing and booking rules
 - Organizer sets the departure, capacity, minimum group, group guide fee, individual fees, and requirements.
@@ -29,3 +29,6 @@ Chat, feeds, real identity verification, endorsements, women-only lobbies, buddy
 Original implementation inspired by the rendered public Akyat website: warm cream, charcoal, rust, strong Archivo typography, hairline rules, and large trail images. GSAP handles headline entrances, image reveals and parallax, section reveals, a drawn elevation illustration, and changing price amounts. Mobile keeps ordinary page scrolling and a bottom navigation bar. Reduced-motion preferences disable these sequences. No source or assets were copied from the previous application.
 
 The homepage price experiment is explicitly illustrative and separate from reservations. The actual booking panel remains authoritative for party count, locked quotes, and full per-person fees.
+
+## First-visit onboarding
+Registration, returning demo login, animated arrival, and preference-based recommendations now precede discovery. Read [ONBOARDING-AND-CONNECTIONS.md](ONBOARDING-AND-CONNECTIONS.md) for the exact data boundary, prototype behavior, provider findings, and proposed backend. Strava/AllTrails screens are explicitly optional concept previews with synthetic history, never real connections.

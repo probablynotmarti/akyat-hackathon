@@ -33,3 +33,12 @@ Recorded October 25, 2026 (Asia/Manila).
 - Repeated the actual mobile flow: reserve Talamitam, save fictional requirements, add two friends, lock ₱300 guide share + ₱150 individual fees, simulate payment, render the QR, load it through organizer lookup, and explicitly check in. Result changed to Already checked in and removed the admission action.
 - Reduced-motion handling is implemented with GSAP matchMedia and CSS; an operating-system reduced-motion preference was not toggled during this check.
 - Browser console showed no error or warning entries during the final flow. Camera/upload limits above remain unchanged.
+
+## First-visit onboarding follow-up
+- **20/20 tests passed**. New tests cover invalid registration data, credential verification/rejection, exclusion of plaintext password/birthday/phone from saved accounts, session/account matching, beginner preference protection, and explained synthetic-history recommendations.
+- Production build passed (non-blocking Vite bundle-size advisory: about 205 kB gzip JavaScript).
+- Desktop welcome and 390 × 844 mobile welcome, details, experience, and suggestion screens visually inspected. A mobile headline wrap issue was corrected.
+- Completed the six-step mobile signup with fictional details; opened the Strava concept, added explicitly fictional history, received the beginner suggestion, and reached the main app through animated arrival.
+- Profile showed the submitted name, email, hiking level, and sample-history label. Sign-out returned to the introduction. Wrong-password login showed an error; correct login returned to the app. Reload retained the local session.
+- New party reservation carried the profile name into the booking requirements form, avoiding duplicate entry.
+- No live provider connection or activity import was made. Camera/upload verification limits remain unchanged. Reduced-motion behavior is implemented, but the OS preference was not toggled in this run.

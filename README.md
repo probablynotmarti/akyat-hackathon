@@ -52,3 +52,8 @@ This app was authored from scratch. The pre-existing Akyat application was not c
 The prototype is a responsive web app: phone navigation for hikers, full desktop layout for judging. The original GSAP implementation adds headline and image reveals, scroll entrances, a drawn elevation study, and animated guide-share amounts; reduced-motion preferences are respected. The live price example is separate from actual reservations.
 
 The real catalog is **Mt. Talamitam**, **Mt. Batulao**, and **Mt. Ulap**. Carlos's [photo brief](docs/HIKE-PHOTO-BRIEF.md) lists exact filenames and sourcing guidance. Until those photos are supplied, labeled original contour illustrations occupy the slots. Dates, route metrics, difficulty labels, fees, and profiles are demo scenarios.
+
+## First-time and returning hikers
+The opening screen offers **First time here** and **Log in**. Complete the conversational onboarding to receive an explained starting trail suggestion, then enter the app through a GSAP welcome animation. Use fictional details and a unique demo-only password. The profile button offers sign-out; return with the same email/password on this browser. This is local UX-demo identity, not server authentication.
+
+Strava and AllTrails are optional **concept previews**, with explicitly fictional sample history. No accounts are connected. See [onboarding, provider research, and the proposed backend](docs/ONBOARDING-AND-CONNECTIONS.md). New reservations reuse the profile name in the booking checklist.
