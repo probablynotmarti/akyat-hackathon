@@ -22,32 +22,32 @@ export function createInitialState() {
     version: 1,
     trips: [
       {
-        id: 'amihan-ridge', name: 'Amihan Ridge', location: 'Rizal · Sample trail', tagline: 'A little climb. A whole new perspective.',
+        id: 'mt-talamitam', name: 'Mt. Talamitam', location: 'Nasugbu, Batangas', tagline: 'A little climb. A whole new perspective.',
         difficulty: 'Beginner-friendly', level: 1, distance: 4.8, ascent: 320, duration: '3–4 hours', terrain: 'Open ridgeline · gentle dirt paths',
-        description: 'Ease into the outdoors with a slow-paced ridge walk, plenty of water breaks, and a summit worth sharing. Come for the morning light. Leave with a few new friends.',
-        image: '/images/ridge.jpg', guideFee: 180000, personalFees: 15000, capacity: 6, minimum: 3,
+        description: 'A sample small-group departure inspired by Talamitam’s grassland landscape. Come for a morning outside and leave with a few new friends. Route figures below are illustrative itinerary values, not verified trail measurements.',
+        image: '/images/hikes/mt-talamitam.jpg', photoFallback: '/images/trail-study-01.svg', guideFee: 180000, personalFees: 15000, capacity: 6, minimum: 3,
         departureAt: '2026-11-08T05:30:00+08:00', closesAt: '2026-11-05T18:00:00+08:00', paymentDueAt: '2026-11-06T18:00:00+08:00',
-        guide: 'Mika Santos', guideInitials: 'MS', organizer: 'Slow Sunday Outdoors', meetup: 'Amihan welcome center · sample location', phase: 'open',
+        guide: 'Mika Santos', guideInitials: 'MS', organizer: 'Slow Sunday Outdoors', meetup: 'Talamitam meeting point · demo location', phase: 'open',
         members: [member('Bea Cruz', 'First hike', 'peach', 'a1'), member('Liam Walker', 'Visiting PH', 'blue', 'a2'), member('Jules Reyes', 'Weekend hiker', 'sage', 'a3')],
         highlights: ['Sunrise viewpoints', 'Friendly first climb', 'Small group, easy pace'],
       },
       {
-        id: 'luntian-loop', name: 'Luntian Forest Loop', location: 'Laguna · Sample trail', tagline: 'Take the scenic route. All of it.',
-        difficulty: 'Easy-going', level: 1, distance: 3.2, ascent: 140, duration: '2–3 hours', terrain: 'Shaded forest · uneven roots',
-        description: 'Trade the city noise for birdsong on a shaded forest loop. An unhurried walk for curious beginners, with time to pause and take it all in.',
-        image: '/images/forest.jpg', guideFee: 120000, personalFees: 10000, capacity: 6, minimum: 3,
+        id: 'mt-batulao', name: 'Mt. Batulao', location: 'Nasugbu, Batangas', tagline: 'Take the scenic route. All of it.',
+        difficulty: 'A little challenge', level: 2, distance: 6.5, ascent: 550, duration: '4–5 hours', terrain: 'Grassland ridges · exposed sections',
+        description: 'A sample departure built around Batulao’s distinctive ridgelines. Explore an organizer-led day with time to enjoy the landscape and meet your trail people. Route figures below are illustrative itinerary values, not verified trail measurements.',
+        image: '/images/hikes/mt-batulao.jpg', photoFallback: '/images/trail-study-02.svg', guideFee: 120000, personalFees: 10000, capacity: 6, minimum: 3,
         departureAt: '2026-11-14T07:00:00+08:00', closesAt: '2026-11-11T18:00:00+08:00', paymentDueAt: '2026-11-12T18:00:00+08:00',
-        guide: 'Nico Flores', guideInitials: 'NF', organizer: 'Slow Sunday Outdoors', meetup: 'Luntian visitor center · sample location', phase: 'open',
+        guide: 'Nico Flores', guideInitials: 'NF', organizer: 'Slow Sunday Outdoors', meetup: 'Batulao meeting point · demo location', phase: 'open',
         members: [member('Sofia Lim', 'Nature lover', 'peach', 'b1'), member('Alex Tan', 'First hike', 'sage', 'b2')],
-        highlights: ['Shaded trails', 'Gentle elevation', 'Room to slow down'],
+        highlights: ['Grassland ridges', 'Small-group departure', 'A change of perspective'],
       },
       {
-        id: 'hiraya-summit', name: 'Hiraya Summit', location: 'Benguet · Sample trail', tagline: 'For the view you will keep talking about.',
+        id: 'mt-ulap', name: 'Mt. Ulap', location: 'Itogon, Benguet', tagline: 'For the view you will keep talking about.',
         difficulty: 'A little challenge', level: 2, distance: 8.6, ascent: 740, duration: '5–6 hours', terrain: 'Steep sections · exposed ridges',
-        description: 'A longer day with steady uphill stretches and big, open views. Best for hikers comfortable with several hours on uneven terrain.',
-        image: '/images/valley.jpg', guideFee: 240000, personalFees: 20000, capacity: 8, minimum: 4,
+        description: 'A sample longer-day departure on the Mt. Ulap Eco-Trail, known for its pine and grassland ridges. Review the organizer’s actual route before a real hike; the route figures here are illustrative itinerary values.',
+        image: '/images/hikes/mt-ulap.jpg', photoFallback: '/images/trail-study-03.svg', guideFee: 240000, personalFees: 20000, capacity: 8, minimum: 4,
         departureAt: '2026-11-15T05:00:00+08:00', closesAt: '2026-11-12T18:00:00+08:00', paymentDueAt: '2026-11-13T18:00:00+08:00',
-        guide: 'Dani Rivera', guideInitials: 'DR', organizer: 'Slow Sunday Outdoors', meetup: 'Hiraya ranger station · sample location', phase: 'open',
+        guide: 'Dani Rivera', guideInitials: 'DR', organizer: 'Slow Sunday Outdoors', meetup: 'Ampucao meeting point · demo location', phase: 'open',
         members: [member('Sam Garcia', 'Trail regular', 'blue', 'c1'), member('Pat Santos', 'Weekend hiker', 'sage', 'c2'), member('Kai Ramos', 'Trail regular', 'peach', 'c3'), member('Ivy Chen', 'Visiting PH', 'lilac', 'c4')],
         highlights: ['Panoramic ridges', 'A rewarding climb', 'Steady hiking pace'],
       },
@@ -116,13 +116,26 @@ export function checkIn(trip, memberId) {
 }
 
 export function recommendation(answers) {
-  if (answers.experience === 'first' || answers.comfort === 'gentle' || answers.preference === 'forest') return 'luntian-loop';
-  if (answers.experience === 'regular' && answers.comfort === 'long' && answers.preference === 'challenge') return 'hiraya-summit';
-  return 'amihan-ridge';
+  if (answers.experience === 'first' || answers.comfort === 'gentle') return 'mt-talamitam';
+  if (answers.experience === 'regular' && answers.comfort === 'long' && answers.preference === 'challenge') return 'mt-ulap';
+  return 'mt-batulao';
 }
 
 export function validateSavedState(value) {
   return value?.version === 1 && Array.isArray(value.trips) && value.trips.length === 3 && value.trips.every(t =>
     typeof t.id === 'string' && Number.isInteger(t.guideFee) && Number.isInteger(t.personalFees) && Array.isArray(t.members) &&
     ['open', 'payment', 'ready', 'cancelled'].includes(t.phase) && t.members.every(m => typeof m.id === 'string' && typeof m.name === 'string' && ['reserved', 'paid', 'expired', 'cancelled', 'refunded'].includes(m.status)));
+}
+
+
+export const LEGACY_TRIP_IDS = { 'amihan-ridge': 'mt-talamitam', 'luntian-loop': 'mt-batulao', 'hiraya-summit': 'mt-ulap' };
+export function refreshCatalog(saved) {
+  const seeds = createInitialState();
+  if (!validateSavedState(saved)) return seeds;
+  return { ...seeds, trips: seeds.trips.map(seed => {
+    const old = saved.trips.find(t => t.id === seed.id || LEGACY_TRIP_IDS[t.id] === seed.id);
+    if (!old) return seed;
+    const live = Object.fromEntries(['members', 'phase', 'lockedCount', 'organizerShortfall', 'cancellationReason'].filter(key => key in old).map(key => [key, old[key]]));
+    return { ...seed, ...live };
+  }) };
 }

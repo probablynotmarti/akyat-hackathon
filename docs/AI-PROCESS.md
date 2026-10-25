@@ -19,3 +19,6 @@ Carlos's usability findings and any resulting revisions should be added only aft
 
 ## Final local verification
 `npm test`: 14/14 passed. The Sites build helper ran the Vite production build successfully. `git diff --check` passed. See `docs/VERIFICATION.md` for observed browser behavior and limits.
+
+## Design refinement after the working journey
+Marti asked for a mobile-versus-desktop recommendation and a stronger visual direction based on his existing Akyat website. Codex inspected its rendered design without reusing its source, then authored an original warm cream/charcoal/rust layout and GSAP motion. An interactive guide-share example makes the main value proposition testable immediately. Mobile QA led to a more compact Jump-off Pass so the QR appears in the initial phone viewport. The real three-hike catalog and photo-sourcing handoff give Carlos a concrete non-coding contribution. Automated migration coverage protects bookings made against the earlier sample names. See VERIFICATION.md for observed results and remaining limits.

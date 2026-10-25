@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createInitialState, splitFee, joinParty, estimatedShare, closeRegistration, updateRequirements, payBooking, expireUnpaid, cancelDeparture, cancelBooking, passStatus, checkIn, recommendation, validateSavedState } from '../src/domain.js';
+import { createInitialState, splitFee, joinParty, estimatedShare, closeRegistration, updateRequirements, payBooking, expireUnpaid, cancelDeparture, cancelBooking, passStatus, checkIn, recommendation, validateSavedState, refreshCatalog } from '../src/domain.js';
 
 const base = () => createInitialState().trips[0];
 const join = (t = base()) => joinParty(t, { isYou: true, name: 'Demo Hiker', id: 'you', passId: 'opaque-test-pass' });
@@ -58,8 +58,22 @@ test('requirements updates cannot overwrite payment or admission state', () => {
   assert.equal(you(t).status, 'reserved'); assert.equal(you(t).checkedIn, undefined);
 });
 test('readiness gives a gentler trail to first-time hikers', () => {
-  assert.equal(recommendation({ experience: 'first', comfort: 'long', preference: 'challenge' }), 'luntian-loop');
+  assert.equal(recommendation({ experience: 'first', comfort: 'long', preference: 'challenge' }), 'mt-talamitam');
 });
 test('saved-state validation rejects malformed data', () => {
   assert.equal(validateSavedState(createInitialState()), true); assert.equal(validateSavedState({ version: 1, trips: [{}] }), false);
+});
+
+// A visual catalog update must not erase an already-issued pass.
+test('legacy catalog migration preserves paid bookings and duplicate check-in protection', () => {
+  const old = createInitialState();
+  old.trips[0] = { ...checkIn(paid(), 'you'), id: 'amihan-ridge', name: 'Amihan Ridge' };
+  old.trips[1].id = 'luntian-loop'; old.trips[2].id = 'hiraya-summit';
+  const fresh = refreshCatalog(old);
+  assert.deepEqual(fresh.trips.map(t => t.id), ['mt-talamitam', 'mt-batulao', 'mt-ulap']);
+  assert.equal(fresh.trips[0].name, 'Mt. Talamitam');
+  assert.equal(you(fresh.trips[0]).paidAmount, 60000);
+  assert.equal(you(fresh.trips[0]).passId, 'opaque-test-pass');
+  assert.equal(passStatus(fresh.trips[0], you(fresh.trips[0])), 'checked-in');
+  assert.throws(() => checkIn(fresh.trips[0], 'you'), /already/);
 });

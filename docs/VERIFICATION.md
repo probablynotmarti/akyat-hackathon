@@ -22,3 +22,14 @@ Recorded October 25, 2026 (Asia/Manila).
 - Browser file chooser automation stalled and was interrupted by the user restarting the app; end-to-end upload interaction remains unverified. The saved PNG itself decoded successfully, and generated QR matrices round-trip through the same libraries.
 - Camera hardware/permissions were not exercised. Reference lookup is the documented fallback.
 - This is a browser-local prototype, not a multi-user service or authenticated organizer system.
+
+## Mobile-first redesign follow-up
+- Catalog now uses Mt. Talamitam, Mt. Batulao, and Mt. Ulap. Operational values remain samples. Correct photo paths and source requirements are documented for Carlos.
+- **15/15 tests passed**, including migration of legacy IDs without losing a paid pass or duplicate check-in protection.
+- Production build passed; Vite reports a non-blocking bundle-size advisory (about 197 kB gzip for the JavaScript bundle).
+- Desktop layout, contour fallback illustrations, directory, and the interactive price example were visually inspected.
+- Homepage price example changed 4 → 5 → 6 hikers and ₱450 → ₱360 → ₱300.
+- At 390 × 844, home and personal pass had no horizontal overflow. Mobile bottom navigation was exercised.
+- Repeated the actual mobile flow: reserve Talamitam, save fictional requirements, add two friends, lock ₱300 guide share + ₱150 individual fees, simulate payment, render the QR, load it through organizer lookup, and explicitly check in. Result changed to Already checked in and removed the admission action.
+- Reduced-motion handling is implemented with GSAP matchMedia and CSS; an operating-system reduced-motion preference was not toggled during this check.
+- Browser console showed no error or warning entries during the final flow. Camera/upload limits above remain unchanged.
