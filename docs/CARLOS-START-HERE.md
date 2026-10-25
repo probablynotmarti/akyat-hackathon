@@ -1,5 +1,7 @@
 # Carlos: start here
 
+> Update: Marti supplied photos and expanded the current catalog to seven mountains. See [PHOTO-SELECTION.md](PHOTO-SELECTION.md); earlier three-mountain sourcing notes below are historical.
+
 **Final recording sprint:** [70-minute readiness checklist](RECORDING-READINESS.md) assigns the remaining engineering, pitch, and video work.
 
 **New priority:** [Read the three-hike photo brief](HIKE-PHOTO-BRIEF.md): Mt. Talamitam, Mt. Batulao, and Mt. Ulap. You may supply correctly sourced photos in `public/images/hikes/` using its exact filenames, and record the sources in `collaboration/carlos/photo-sources.md`.

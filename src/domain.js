@@ -32,14 +32,14 @@ export function createInitialState() {
         highlights: ['Sunrise viewpoints', 'Friendly first climb', 'Small group, easy pace'],
       },
       {
-        id: 'mt-batulao', name: 'Mt. Batulao', location: 'Nasugbu, Batangas', tagline: 'Take the scenic route. All of it.',
-        difficulty: 'A little challenge', level: 2, distance: 6.5, ascent: 550, duration: '4–5 hours', terrain: 'Grassland ridges · exposed sections',
-        description: 'A sample departure built around Batulao’s distinctive ridgelines. Explore an organizer-led day with time to enjoy the landscape and meet your trail people. Route figures below are illustrative itinerary values, not verified trail measurements.',
-        image: '/images/hikes/mt-batulao.jpg', photoFallback: '/images/trail-study-02.svg', guideFee: 120000, personalFees: 10000, capacity: 6, minimum: 3,
+        id: 'mt-pinatubo', name: 'Mt. Pinatubo', location: 'Capas, Tarlac', tagline: 'Take the scenic route. All of it.',
+        difficulty: 'A little challenge', level: 2, distance: 6.5, ascent: 550, duration: '4–5 hours', terrain: 'Crater approach · uneven volcanic terrain',
+        description: 'A sample crater-view departure at Pinatubo. Transport and access arrangements must be confirmed with a real operator. Explore an organizer-led day with time to enjoy the landscape and meet your trail people. Route figures below are illustrative itinerary values, not verified trail measurements.',
+        image: '/images/hikes/mt-pinatubo.jpg', photoFallback: '/images/trail-study-02.svg', guideFee: 120000, personalFees: 10000, capacity: 6, minimum: 3,
         departureAt: '2026-11-14T07:00:00+08:00', closesAt: '2026-11-11T18:00:00+08:00', paymentDueAt: '2026-11-12T18:00:00+08:00',
-        guide: 'Nico Flores', guideInitials: 'NF', organizer: 'Slow Sunday Outdoors', meetup: 'Batulao meeting point · demo location', phase: 'open',
+        guide: 'Nico Flores', guideInitials: 'NF', organizer: 'Slow Sunday Outdoors', meetup: 'Pinatubo meeting point · demo location', phase: 'open',
         members: [member('Sofia Lim', 'Nature lover', 'peach', 'b1'), member('Alex Tan', 'First hike', 'sage', 'b2')],
-        highlights: ['Grassland ridges', 'Small-group departure', 'A change of perspective'],
+        highlights: ['Crater views', 'Small-group departure', 'A change of perspective'],
       },
       {
         id: 'mt-ulap', name: 'Mt. Ulap', location: 'Itogon, Benguet', tagline: 'For the view you will keep talking about.',
@@ -50,6 +50,46 @@ export function createInitialState() {
         guide: 'Dani Rivera', guideInitials: 'DR', organizer: 'Slow Sunday Outdoors', meetup: 'Ampucao meeting point · demo location', phase: 'open',
         members: [member('Sam Garcia', 'Trail regular', 'blue', 'c1'), member('Pat Santos', 'Weekend hiker', 'sage', 'c2'), member('Kai Ramos', 'Trail regular', 'peach', 'c3'), member('Ivy Chen', 'Visiting PH', 'lilac', 'c4')],
         highlights: ['Panoramic ridges', 'A rewarding climb', 'Steady hiking pace'],
+      },
+      {
+        id: 'mt-pulag', name: 'Mt. Pulag', location: 'Benguet', tagline: 'A new landscape. A new story to share.',
+        difficulty: 'A little challenge', level: 2, distance: 8, ascent: 650, duration: '6–8 hours', terrain: 'High-altitude paths · cold and exposed terrain',
+        description: 'Explore a sample small-group departure inspired by Mt. Pulag. These distances, timings, fees, meeting points and guide profiles are fictional demo values. Confirm access, conditions, transport and the actual route with a local organizer before planning a real visit.',
+        image: '/images/hikes/mt-pulag.jpg', photoFallback: '/images/trail-study-03.svg', guideFee: 300000, personalFees: 45000, capacity: 8, minimum: 4,
+        departureAt: '2026-11-21T05:00:00+08:00', closesAt: '2026-11-18T18:00:00+08:00', paymentDueAt: '2026-11-19T18:00:00+08:00',
+        guide: 'Taylor Reyes', guideInitials: 'TR', organizer: 'Weekend Trail Collective', meetup: 'Mt. Pulag meeting point · demo location', phase: 'open',
+        members: [member('Jo Cruz', 'Weekend hiker', 'sage', 'mt-pulag-1'), member('Riley Santos', 'Trail regular', 'blue', 'mt-pulag-2'), member('Max Lee', 'Visiting PH', 'peach', 'mt-pulag-3')],
+        highlights: ['Shared guide fee', 'Small-group departure', 'A new perspective'],
+      },
+      {
+        id: 'mt-daraitan', name: 'Mt. Daraitan', location: 'Tanay, Rizal', tagline: 'A new landscape. A new story to share.',
+        difficulty: 'A little challenge', level: 2, distance: 6, ascent: 600, duration: '5–6 hours', terrain: 'Steep forest paths · limestone sections',
+        description: 'Explore a sample small-group departure inspired by Mt. Daraitan. These distances, timings, fees, meeting points and guide profiles are fictional demo values. Confirm access, conditions, transport and the actual route with a local organizer before planning a real visit.',
+        image: '/images/hikes/mt-daraitan.jpg', photoFallback: '/images/trail-study-03.svg', guideFee: 180000, personalFees: 20000, capacity: 8, minimum: 4,
+        departureAt: '2026-11-22T05:00:00+08:00', closesAt: '2026-11-19T18:00:00+08:00', paymentDueAt: '2026-11-20T18:00:00+08:00',
+        guide: 'Taylor Reyes', guideInitials: 'TR', organizer: 'Weekend Trail Collective', meetup: 'Mt. Daraitan meeting point · demo location', phase: 'open',
+        members: [member('Jo Cruz', 'Weekend hiker', 'sage', 'mt-daraitan-1'), member('Riley Santos', 'Trail regular', 'blue', 'mt-daraitan-2'), member('Max Lee', 'Visiting PH', 'peach', 'mt-daraitan-3')],
+        highlights: ['Shared guide fee', 'Small-group departure', 'A new perspective'],
+      },
+      {
+        id: 'mt-makiling', name: 'Mt. Makiling', location: 'Laguna / Batangas', tagline: 'A new landscape. A new story to share.',
+        difficulty: 'A little challenge', level: 2, distance: 9, ascent: 700, duration: '6–7 hours', terrain: 'Forest trails · sustained ascent',
+        description: 'Explore a sample small-group departure inspired by Mt. Makiling. These distances, timings, fees, meeting points and guide profiles are fictional demo values. Confirm access, conditions, transport and the actual route with a local organizer before planning a real visit.',
+        image: '/images/hikes/mt-makiling.jpg', photoFallback: '/images/trail-study-03.svg', guideFee: 240000, personalFees: 15000, capacity: 8, minimum: 4,
+        departureAt: '2026-11-23T05:00:00+08:00', closesAt: '2026-11-20T18:00:00+08:00', paymentDueAt: '2026-11-21T18:00:00+08:00',
+        guide: 'Taylor Reyes', guideInitials: 'TR', organizer: 'Weekend Trail Collective', meetup: 'Mt. Makiling meeting point · demo location', phase: 'open',
+        members: [member('Jo Cruz', 'Weekend hiker', 'sage', 'mt-makiling-1'), member('Riley Santos', 'Trail regular', 'blue', 'mt-makiling-2'), member('Max Lee', 'Visiting PH', 'peach', 'mt-makiling-3')],
+        highlights: ['Shared guide fee', 'Small-group departure', 'A new perspective'],
+      },
+      {
+        id: 'mt-pamitinan', name: 'Mt. Pamitinan', location: 'Rodriguez, Rizal', tagline: 'A new landscape. A new story to share.',
+        difficulty: 'A little challenge', level: 2, distance: 4, ascent: 450, duration: '4–5 hours', terrain: 'Rocky limestone terrain · scrambling sections',
+        description: 'Explore a sample small-group departure inspired by Mt. Pamitinan. These distances, timings, fees, meeting points and guide profiles are fictional demo values. Confirm access, conditions, transport and the actual route with a local organizer before planning a real visit.',
+        image: '/images/hikes/mt-pamitinan.jpg', photoFallback: '/images/trail-study-03.svg', guideFee: 150000, personalFees: 15000, capacity: 8, minimum: 4,
+        departureAt: '2026-11-24T05:00:00+08:00', closesAt: '2026-11-21T18:00:00+08:00', paymentDueAt: '2026-11-22T18:00:00+08:00',
+        guide: 'Taylor Reyes', guideInitials: 'TR', organizer: 'Weekend Trail Collective', meetup: 'Mt. Pamitinan meeting point · demo location', phase: 'open',
+        members: [member('Jo Cruz', 'Weekend hiker', 'sage', 'mt-pamitinan-1'), member('Riley Santos', 'Trail regular', 'blue', 'mt-pamitinan-2'), member('Max Lee', 'Visiting PH', 'peach', 'mt-pamitinan-3')],
+        highlights: ['Shared guide fee', 'Small-group departure', 'A new perspective'],
       },
     ],
   };
@@ -118,11 +158,11 @@ export function checkIn(trip, memberId) {
 export function recommendation(answers) {
   if (answers.experience === 'first' || answers.comfort === 'gentle') return 'mt-talamitam';
   if (answers.experience === 'regular' && answers.comfort === 'long' && answers.preference === 'challenge') return 'mt-ulap';
-  return 'mt-batulao';
+  return 'mt-pinatubo';
 }
 
 export function validateSavedState(value) {
-  return value?.version === 1 && Array.isArray(value.trips) && value.trips.length === 3 && value.trips.every(t =>
+  return value?.version === 1 && Array.isArray(value.trips) && value.trips.length >= 3 && value.trips.length <= 20 && value.trips.every(t =>
     typeof t.id === 'string' && Number.isInteger(t.guideFee) && Number.isInteger(t.personalFees) && Array.isArray(t.members) &&
     ['open', 'payment', 'ready', 'cancelled'].includes(t.phase) && t.members.every(m => typeof m.id === 'string' && typeof m.name === 'string' && ['reserved', 'paid', 'expired', 'cancelled', 'refunded'].includes(m.status)));
 }
@@ -137,5 +177,5 @@ export function refreshCatalog(saved) {
     if (!old) return seed;
     const live = Object.fromEntries(['members', 'phase', 'lockedCount', 'organizerShortfall', 'cancellationReason'].filter(key => key in old).map(key => [key, old[key]]));
     return { ...seed, ...live };
-  }) };
+  }).concat(saved.trips.filter(t => !seeds.trips.some(seed => seed.id === (LEGACY_TRIP_IDS[t.id] || t.id)) && t.members.some(m => m.isYou)).map(t => ({ ...t, id: LEGACY_TRIP_IDS[t.id] || t.id }))) };
 }

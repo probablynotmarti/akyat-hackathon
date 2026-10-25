@@ -36,6 +36,16 @@ test('recommendations use only onboarding answers and ignore obsolete imported-h
   const experienced={...form,experience:'regular',comfort:'full',preference:'challenge'};
   assert.equal(trailMatch(experienced).id,'mt-ulap');
   assert.deepEqual(trailMatch({...experienced,sampleHistory:true}),trailMatch(experienced));
-  assert.equal(trailMatch(form).id,'mt-batulao');
+  assert.equal(trailMatch(form).id,'mt-pinatubo');
   assert.equal('sampleHistory' in publicProfile({...form,id:'legacy',sampleHistory:true}),false);
+});
+
+import { DEMO_ACCOUNT } from '../src/demo-account.js';
+test('shared demo sessions work on fresh browsers without replacing a personal account', async()=>{
+  const personal=await makeAccount(form); const local=storage({[ACCOUNT_KEY]:JSON.stringify(personal)});
+  const session=storage({[SESSION_KEY]:DEMO_ACCOUNT.id});
+  assert.equal(readSession(storage(),session).email,'hackathon@gmail.com');
+  assert.equal(readSession(local,session).id,DEMO_ACCOUNT.id);
+  assert.equal(JSON.parse(local.getItem(ACCOUNT_KEY)).id,personal.id);
+  assert.equal(await verifyLogin(DEMO_ACCOUNT,'hackathon@gmail.com','wrong demo password'),false);
 });

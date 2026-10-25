@@ -2,6 +2,7 @@
 
 ## Before recording
 - Open one browser and keep the full journey in that browser. Bookings are local.
+- For the shared recording login, choose Log in and use the credentials from Marti’s team chat. Fresh browsers are supported; booking data is still local.
 - First visit: First time here → fill sample details → choose a demo-only password → experience and preferred outing → create demo account.
 - Returning visit: Log in using that browser’s demo account. The profile button lets you sign out and demonstrate the welcome/login sequence again.
 - Use Demo controls → Reset demo to restore the initial sample group.
@@ -23,7 +24,7 @@
 
 ## Optional short branches
 - **Readiness:** Home → Find my pace. First hike + easy walk + a change of scenery suggests Mt. Talamitam, with an explanation. This is not fitness clearance.
-- **Minimum not reached:** Reset, select Mt. Batulao in Demo controls, close registration before joining. Two hikers are below its minimum of three; the departure cancels without payment.
+- **Minimum not reached:** Reset, select Mt. Pinatubo in Demo controls, close registration before joining. Two hikers are below its minimum of three; the departure cancels without payment.
 - **Nonpayment:** After the presenter pays, end the payment window. Other reserved participants expire. The presenter's locked quote does not change; the organizer contribution is shown.
 - **Cancellation:** A hiker cancellation at least 24 hours before departure produces a simulated refund. Late requests remain pending organizer review. Organizer cancellation refunds all paid bookings.
 - **Incorrect QR:** Paste a party invitation URL into organizer lookup. It is identified as an invitation rather than an admission pass.

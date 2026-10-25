@@ -8,7 +8,7 @@ Current recording scope: five onboarding steps, with no external activity connec
 4. Preferred outing length and motivation: scenery, people, climb.
 5. Explained trail suggestion, then create demo account and animated arrival.
 
-Recommendations use the hiker's answers only. Beginners and short-outing preferences start with Talamitam; experienced hikers seeking a full-day climb can get Ulap; the remaining combination suggests Batulao. Existing profile history flags no longer influence results. Suggestions are preference guidance, not fitness clearance. Route metrics remain illustrative.
+Recommendations use the hiker's answers only. Beginners and short-outing preferences start with Talamitam; experienced hikers seeking a full-day climb can get Ulap; the remaining combination suggests Pinatubo. Existing profile history flags no longer influence results. Suggestions are preference guidance, not fitness clearance. Route metrics remain illustrative.
 
 ## Demo identity
 One browser-local demo account. Name, email, preferences, and a salted password verifier persist. Plaintext passwords, birthday, and phone are not saved. Login uses the same browser; sessions survive refresh in that tab. Existing bookings are preserved. New reservations carry the profile name into the requirements form. No server authentication, email verification, password recovery, or cross-device account is provided.
@@ -20,3 +20,6 @@ Use fictional details and a demo-only password. The profile menu offers sign-out
 
 ## Future backend
 Server authentication with verification/recovery, per-user booking access, organizer roles, shared group state, and a real payment provider are future work. Keep these outside the recording build.
+
+## Shared recording identity
+The supplied hackathon demo login is available on any fresh browser via Log in. It is a fixed fictional profile with a client-side salted verifier; it does not send email or authenticate against a backend. A shared-demo session does not overwrite a separately created local profile. Bookings remain device-local.

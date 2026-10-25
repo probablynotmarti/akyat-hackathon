@@ -1,5 +1,7 @@
 # Carlos: real hikes and photography brief
 
+> Update: Marti supplied photos and expanded the current catalog to seven mountains. See [PHOTO-SELECTION.md](PHOTO-SELECTION.md); earlier three-mountain sourcing notes below are historical.
+
 This is the full three-hike catalog for the hackathon. Real mountain identities replace the earlier fictional names. Departures, prices, guides, participants, and requirements remain demo scenarios; no current trail-opening or official acceptance claim is made.
 
 | Priority | Hike | Place | Intended role | Find these views | File name |

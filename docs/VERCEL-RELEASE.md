@@ -1,0 +1,18 @@
+# Vercel release
+
+Live app: https://akyat-hackathon-marti-2026.vercel.app
+
+Vercel project: akyat-hackathon-marti-2026, in the existing signed-in account. This is separate from the older Akyat website and the Sites preview. Use this Vercel link for partner testing.
+
+The claimable-upload helper failed to return a URL; deployment succeeded using the installed, authenticated Vercel CLI. The project is already in Marti's account, so no claim link is needed.
+
+## Partner testing
+1. Open the live URL and choose Log in.
+2. Use the shared hackathon credentials Marti supplied in chat.
+3. Follow DEMO.md for the Talamitam price-drop and pass journey.
+4. Use Demo controls → Reset demo to restore the sample bookings on that browser.
+
+The account works on fresh browsers. Booking/organizer state is still local to each browser, with no cross-device synchronization. Use the same browser for booking and pass validation. Camera/upload support is device-dependent; Load my demo booking is the tested fallback. The old Sites URL was not updated in this Vercel-only release.
+
+## Deploy another tested build
+From the application root, run npm test and npm run build. Copy dist into the existing ignored work/akyat-hackathon-marti-2026 staging folder, which contains its Vercel project binding, then run vercel deploy --yes --prod from that folder. Do not deploy the entire work folder or use the older Akyat project.

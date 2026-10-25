@@ -70,10 +70,21 @@ test('legacy catalog migration preserves paid bookings and duplicate check-in pr
   old.trips[0] = { ...checkIn(paid(), 'you'), id: 'amihan-ridge', name: 'Amihan Ridge' };
   old.trips[1].id = 'luntian-loop'; old.trips[2].id = 'hiraya-summit';
   const fresh = refreshCatalog(old);
-  assert.deepEqual(fresh.trips.map(t => t.id), ['mt-talamitam', 'mt-batulao', 'mt-ulap']);
+  assert.deepEqual(fresh.trips.map(t => t.id), ['mt-talamitam', 'mt-pinatubo', 'mt-ulap', 'mt-pulag', 'mt-daraitan', 'mt-makiling', 'mt-pamitinan']);
   assert.equal(fresh.trips[0].name, 'Mt. Talamitam');
   assert.equal(you(fresh.trips[0]).paidAmount, 60000);
   assert.equal(you(fresh.trips[0]).passId, 'opaque-test-pass');
   assert.equal(passStatus(fresh.trips[0], you(fresh.trips[0])), 'checked-in');
   assert.throws(() => checkIn(fresh.trips[0], 'you'), /already/);
+});
+
+test('seven-mountain refresh keeps existing bookings and retains a retired booked destination', () => {
+  const old=createInitialState(); old.trips=old.trips.slice(0,3);
+  old.trips[1]={...joinParty(old.trips[1],{isYou:true,id:'legacy-you',passId:'legacy-pass'}),id:'mt-batulao',name:'Mt. Batulao'};
+  const fresh=refreshCatalog(old);
+  assert.equal(validateSavedState(fresh),true);
+  assert.equal(fresh.trips.filter(t=>t.id==='mt-pinatubo').length,1);
+  assert.equal(fresh.trips.find(t=>t.id==='mt-batulao').members.find(m=>m.isYou).passId,'legacy-pass');
+  assert.equal(fresh.trips.find(t=>t.id==='mt-batulao').name,'Mt. Batulao');
+  assert.equal(createInitialState().trips.length,7);
 });

@@ -49,3 +49,13 @@ Historical verification of the earlier six-step design; the connection-removal u
 - Recommendations and profile labels use onboarding answers only. Legacy imported-history flags do not affect results or appear in the public profile.
 - All 20 automated tests passed and the production build passed. The bundle-size advisory remains non-blocking.
 - Earlier browser checks above describe the previous version; this removal was verified through source review, tests, and build, without repeating the full browser recording journey.
+
+## Minimal photography release / Vercel
+- Implemented the supplied minimal design direction with seven user-supplied destination photos, responsive generic hero, neutral controls, total-first prices, and a shorter arrival animation.
+- Shared demo login was verified in a fresh browser with the exact supplied credentials. The app did not require local registration first.
+- Repeated the full Talamitam browser journey: joined, added two friends, locked ₱300 guide share + ₱150 personal fees, saved requirements, simulated payment, rendered the personal QR, looked it up in organizer view, and confirmed check-in. The next state blocked duplicate admission.
+- Visually checked desktop homepage, 390 × 844 homepage/catalog, and 320 px login. DOM width matched the viewport at 390 and 320 px. All seven destination photos loaded after scrolling through the catalog.
+- Camera permission and upload-picker integration were not exercised. QR round-trip library tests remain part of the suite. Reduced-motion handling is implemented but OS preference was not toggled in this release.
+- Production build passed with the existing non-blocking bundle-size advisory (approximately 204 KB gzip JavaScript).
+- Final automated suite: **22/22 passed**, including fresh-browser shared-demo sessions and three-to-seven catalog migration with retired booked destinations preserved.
+- Public Vercel alias returned HTTP 200 without authentication. Exact supplied demo credentials successfully opened the seven-mountain homepage on Vercel; browser console contained no warnings or errors during that check.

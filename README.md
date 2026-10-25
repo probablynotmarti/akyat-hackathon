@@ -2,11 +2,13 @@
 
 **Find your people. Find your peak.**
 
+[Open the live Vercel app](https://akyat-hackathon-marti-2026.vercel.app) · [Partner testing and release notes](docs/VERCEL-RELEASE.md)
+
 An original UX hackathon prototype: find a small hiking party, share the guide cost, complete registration, and arrive with one personal Jump-off Pass.
 
 ## Carlos: start here
 
-**Photo sourcing:** [Complete hike list and image brief](docs/HIKE-PHOTO-BRIEF.md) — Mt. Talamitam, Mt. Batulao, Mt. Ulap.
+**Supplied photos:** [Seven-mountain selection](docs/PHOTO-SELECTION.md) — Mt. Talamitam, Mt. Pinatubo, Mt. Ulap, Mt. Pulag, Mt. Daraitan, Mt. Makiling, Mt. Pamitinan.
 
 Read [your ready-to-paste Codex handoff](docs/CARLOS-START-HERE.md). [Team roles](docs/ROLES.md) define ownership and the three-hour schedule. Carlos owns pitch/video/UX artifacts in `collaboration/carlos/`; Marti owns engineering.
 
@@ -48,12 +50,15 @@ Departures, profiles, accreditation, payment, waiver, and refunds are demonstrat
 
 This app was authored from scratch. The pre-existing Akyat application was not cloned or reused. Open-source libraries and illustrative stock photography are credited in [assets and dependencies](docs/ASSETS.md).
 
-## Mobile-first visual update
-The prototype is a responsive web app: phone navigation for hikers, full desktop layout for judging. The original GSAP implementation adds headline and image reveals, scroll entrances, a drawn elevation study, and animated guide-share amounts; reduced-motion preferences are respected. The live price example is separate from actual reservations.
+## Minimal photography update
+Off-white surfaces, charcoal actions, Archivo typography, a compact generated mountain hero, and seven supplied mountain photos. Cards show the estimated total when joining, with guide share and personal fees underneath. Mobile booking controls precede long trail details. GSAP motion is brief and respects reduced-motion preferences. The illustrative price experiment sits below the directory and is separate from reservations.
 
-The real catalog is **Mt. Talamitam**, **Mt. Batulao**, and **Mt. Ulap**. Carlos's [photo brief](docs/HIKE-PHOTO-BRIEF.md) lists exact filenames and sourcing guidance. Until those photos are supplied, labeled original contour illustrations occupy the slots. Dates, route metrics, difficulty labels, fees, and profiles are demo scenarios.
+[Photo selection and provenance](docs/PHOTO-SELECTION.md) covers all seven mountains. Pinatubo replaces Batulao for new departures. Existing booked legacy destinations are retained rather than relabeled. Dates, route metrics, difficulty labels, fees, and profiles remain demo scenarios.
 
 ## First-time and returning hikers
 The opening screen offers **First time here** and **Log in**. Complete the conversational onboarding to receive an explained starting trail suggestion, then enter the app through a GSAP welcome animation. Use fictional details and a unique demo-only password. The profile button offers sign-out; return with the same email/password on this browser. This is local UX-demo identity, not server authentication.
 
 External activity options have been removed. See [the five-step onboarding flow](docs/ONBOARDING.md). New reservations reuse the profile name in the booking checklist.
+
+## Shared hackathon login
+Use **Log in** with the demo credentials Marti provided in the team chat. The shared profile works on fresh browsers and does not overwrite a personal local account. Its client-side verifier is for demonstration only; it is not production authentication. Bookings remain independent per browser. No email is sent.

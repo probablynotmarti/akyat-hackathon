@@ -1,3 +1,4 @@
+import { DEMO_ACCOUNT } from './demo-account.js';
 // Local UX-demo identity only. Production authentication belongs on a server.
 export const ACCOUNT_KEY = 'akyat-demo-profile-v1';
 export const SESSION_KEY = 'akyat-demo-session-v1';
@@ -44,11 +45,11 @@ export async function verifyLogin(account, email, password) {
   return await derive(password, account.salt) === account.verifier;
 }
 export function readSession(local, session) {
-  try { const a = readAccount(local); return a && session.getItem(SESSION_KEY) === a.id ? publicProfile(a) : null; } catch { return null; }
+  try { const id = session.getItem(SESSION_KEY); const a = id === DEMO_ACCOUNT.id ? DEMO_ACCOUNT : readAccount(local); return a && id === a.id ? publicProfile(a) : null; } catch { return null; }
 }
 export function trailMatch(profile) {
   if (profile.experience === 'first') return { id: 'mt-talamitam', reason: 'You’re starting fresh. This sample departure has our gentlest pace and a small group to find your feet with.' };
-  if (profile.comfort === 'short') return { id: 'mt-talamitam', reason: 'You asked for a shorter day. This is the shortest sample itinerary in our three-mountain collection.' };
+  if (profile.comfort === 'short') return { id: 'mt-talamitam', reason: 'You asked for a shorter day. This is the shortest sample itinerary in our mountain collection.' };
   if (profile.experience === 'regular' && profile.comfort === 'full' && profile.preference === 'challenge') return { id: 'mt-ulap', reason: 'You hike regularly and want a full day with a rewarding climb. This is our longer sample itinerary.' };
-  return { id: 'mt-batulao', reason: 'You have a few hikes behind you and time for a longer outing. This sample ridge departure is a place to explore next.' };
+  return { id: 'mt-pinatubo', reason: 'You have a few hikes behind you and time for a longer outing. This sample crater departure is a place to explore next.' };
 }

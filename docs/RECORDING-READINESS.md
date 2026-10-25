@@ -1,5 +1,7 @@
 # Akyat: final 70 minutes before recording
 
+> Update: Marti supplied photos and expanded the current catalog to seven mountains. See [PHOTO-SELECTION.md](PHOTO-SELECTION.md); earlier three-mountain sourcing notes below are historical.
+
 Freeze feature scope. Focus on problem/value (30%), user experience (30%), evidence of Codex work (25%), and the shared-price idea (15%). The clock below starts when the team adopts this checklist.
 
 | Time | Marti / engineering | Carlos / pitch and video |
