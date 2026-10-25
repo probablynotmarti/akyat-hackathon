@@ -4,7 +4,7 @@
 Own application architecture, original source, pricing and booking state, QR generation and validation, responsive UI, meaningful tests, deployment, and bug fixes. Protect the full end-to-end journey before adding features.
 
 ## Carlos + Carlos's Codex
-Own the problem statement, pitch narrative, slide content, video script, storyboard, screen-copy suggestions, first-time-user testing, rubric mapping, and final submission checklist. Use Codex to create deliverables. Also source and identify the three real mountain photos listed in `docs/HIKE-PHOTO-BRIEF.md`; use the exact filenames in `public/images/hikes/` and preserve permission/source evidence. No coding background is needed. Work in `collaboration/carlos/` and read `docs/CARLOS-START-HERE.md`.
+Own the problem statement, pitch narrative, slide content, video script, storyboard, screen-copy suggestions, first-time-user testing, rubric mapping, and final submission checklist. Use Codex to create deliverables. Also source and identify the seven real mountain photos listed in `docs/HIKE-PHOTO-BRIEF.md`; use the exact filenames in `public/images/hikes/` and preserve permission/source evidence. No coding background is needed. Work in `collaboration/carlos/` and read `docs/CARLOS-START-HERE.md`.
 
 ## Schedule from build approval
 | Minutes | Engineering | Carlos |

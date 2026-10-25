@@ -127,3 +127,8 @@ test('buddy pairing is optional, persists, and cannot be set on inactive booking
   t=setBuddy(t,'you',false);assert.equal(you(t).buddyId,null);
   assert.throws(()=>setBuddy(cancelDeparture(t),'you',true),/active/);
 });
+
+test('expected return uses the upper trail-duration estimate plus one hour', () => {
+  const t = checkIn({ ...paid(), duration: '6–8 hours', demoNow: 1800000000000 }, 'you');
+  assert.equal(new Date(you(t).expectedReturnAt) - new Date(you(t).checkedInAt), 9 * 3600000);
+});

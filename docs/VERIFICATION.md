@@ -68,3 +68,9 @@ Historical verification of the earlier six-step design; the connection-removal u
 - Organizer lookup now selects the scanned departure's roster. Opening organizer from a pass retains that pass's departure, including when two personal bookings exist.
 - Mobile pass inspected at 390 × 844 with document width equal to viewport. No camera permission or physical-phone QR scan was performed by Codex in this run.
 - Published the final flows to the existing Vercel alias. Live browser inspection confirmed Pinatubo and Ulap each show 5/6 and the new invitation prompt is served before authentication.
+
+## Final organizer and camera-readiness pass — 2026-10-25
+
+See SUBMISSION-REVIEW.md for the full independent Standards/Spec review, camera diagnosis limits and recording recommendation. 32 tests pass; production build and diff whitespace check pass. Fixed paid-booking organizer callback and upper-bound return duration. Local browser rehearsal covered itemized Pinatubo payment, issued QR, paid booking revisit, organizer check-in, duplicate prevention, overdue preview, return and persistence at 390×844. QR image upload decoded correctly. Camera opening/cancellation UI was exercised, but actual iPhone 14 Safari camera frames remain unverified. Source bundle: index-Vl86NM9H.js / index-Dc2uDO1e.css.
+
+Live Vercel verification: refreshed production alias loads updated organizer guidance; invitation reference is rejected as an invitation, unknown personal reference is rejected as not found. Deployed build is https://akyat-hackathon-marti-2026-9i1pbnlij.vercel.app, aliased to https://akyat-hackathon-marti-2026.vercel.app. New camera code received a focused second review with no additional functional blocker found.

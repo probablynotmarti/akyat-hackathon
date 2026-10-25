@@ -154,7 +154,7 @@ export function checkIn(trip, memberId) {
   const member = trip.members.find(m => m.id === memberId);
   const now = trip.demoNow || Date.now();
   if (passStatus(trip, member) !== 'ready') throw new Error(passStatus(trip, member) === 'checked-in' ? 'This pass has already been used to check in.' : 'This pass is not ready for check-in.');
-  return { ...trip, members: trip.members.map(m => m.id === memberId ? { ...m, checkedIn: true, checkedInAt: new Date(now).toISOString(), expectedReturnAt: new Date(now + (Number.parseInt(trip.duration) + 1) * 3600000).toISOString() } : m) };
+  return { ...trip, members: trip.members.map(m => m.id === memberId ? { ...m, checkedIn: true, checkedInAt: new Date(now).toISOString(), expectedReturnAt: new Date(now + (Math.max(...(trip.duration.match(/\d+(?:\.\d+)?/g) || [0]).map(Number)) + 1) * 3600000).toISOString() } : m) };
 }
 
 export function recommendation(answers) {

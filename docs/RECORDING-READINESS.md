@@ -6,19 +6,19 @@ Freeze feature scope. Focus on problem/value (30%), user experience (30%), evide
 
 | Time | Marti / engineering | Carlos / pitch and video |
 | --- | --- | --- |
-| 0–15 min | Confirm the design handoff and reserve time to apply it. Keep the five-step onboarding and one dependable booking journey. | Confirm official video duration, submission format, and judge-access requirements. Source the three mountain photos using HIKE-PHOTO-BRIEF.md. |
-| 15–35 min | Apply the bounded design changes; check mobile and recording viewport for clipped text, missing buttons, and motion delays. | Finish the six-slide outline and shot-matched narration. Have a fresh viewer try joining and explain the two QR codes; record actual observations. |
-| 35–50 min | Rehearse the whole flow on the actual recording browser. Fix only failures and confusing prices or actions. | Time the narration against the screens. Frontload the price drop; keep signup to a brief opening shot. |
-| 50–60 min | Verify the deployed version, links, pass lookup, and check-in. Use the reliable reference lookup if camera permission is unreliable. | Prepare titles, voice recording, slide exports, and the final submission checklist. |
-| 60–70 min | Freeze the build, reset demo bookings, prepare a fresh profile only if filming registration, and capture backup screenshots. | Do one final timed rehearsal and check audio. Record against the frozen build. |
+| 0–15 min | Verify the current Vercel release and one complete booking → pass → organizer sequence. Fix blockers only. | Confirm official video duration, submission format, deadline and judge access. Record the introduction and problem/value story. |
+| 15–40 min | Capture the price-drop and payment/pass sequence in one browser; use reference lookup if camera is unreliable. | Record narration and assemble the working screens. |
+| 40–55 min | Freeze the build; check public links and retain a backup recording. | Check sound, spelling, duration, and the submission package. |
+| Final minutes | Support submission; avoid new features. | Submit with a buffer before the official deadline. |
 
-## Current gaps to close
+## Current readiness and remaining checks
 
-- This checkout currently has no actual trail photos in public/images/hikes/. Required subjects: Mt. Talamitam, Mt. Batulao, and Mt. Ulap. Follow the photo brief for exact filenames and source evidence.
-- This checkout currently has no completed pitch, narration, or storyboard in collaboration/carlos/. Carlos may have these in his separate workspace; confirm and bring over the approved files.
-- GitHub is public, but the hosted app is owner-private. Confirm whether judges require an interactive link and arrange the appropriate access before submission.
-- The design workflow still needs integration and a final regression pass; a design image alone is not an implemented screen.
-- Camera and upload UI still need a check on the recording device if they are to appear in the video. The tested fallback is organizer lookup with Load my demo booking.
+- Seven mountain photos and the approved minimal design are integrated. The public interactive demo is https://akyat-hackathon-marti-2026.vercel.app.
+- Carlos's final pitch/video may live in his separate workspace. Verify those deliverables and the event's actual format and deadline; they have not been inspected here.
+- Camera lifecycle tests cover playback failure, permission failure, pending-request cancellation and decoded QR cleanup. Physical iPhone 14 Safari capture still requires a device retry; browser automation cannot certify that hardware path.
+- The dependable recording path is **Load my demo booking**, saved QR upload, or reference lookup in the same browser where payment was simulated.
+- A personal pass from a different browser cannot be looked up: this is a disclosed local prototype, with no shared backend. Displaying the same browser's saved pass on another screen is a valid way to exercise its camera.
+- No new features are needed for the approved prototype. Keep payment, verification and overdue alerts visibly labeled as simulations.
 
 ## Core recording story
 

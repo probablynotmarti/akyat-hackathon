@@ -30,3 +30,5 @@ Paste the following into your Codex chat after opening or cloning https://github
 
 ## Honest pitch framing
 Lead with: “Find your hiking people, share the guide cost, and arrive with one pass.” Describe the app as an interactive prototype with fictional departures, simulated payments, and local state. Live synchronized bookings, real verification, payment integrations, and official trail acceptance are future operational work. The use of Codex is evidenced by actual decisions, source changes, tests, and UX revisions in this repository.
+
+Final recording recommendation: **freeze features and record now**. Read [SUBMISSION-REVIEW.md](SUBMISSION-REVIEW.md) and the updated [RECORDING-READINESS.md](RECORDING-READINESS.md). Keep payment → pass → organizer in one browser; use Load my demo booking if the phone camera is unreliable. Demonstrate safe return as a local simulation, with no real alerts sent.
