@@ -56,4 +56,4 @@ The real catalog is **Mt. Talamitam**, **Mt. Batulao**, and **Mt. Ulap**. Carlos
 ## First-time and returning hikers
 The opening screen offers **First time here** and **Log in**. Complete the conversational onboarding to receive an explained starting trail suggestion, then enter the app through a GSAP welcome animation. Use fictional details and a unique demo-only password. The profile button offers sign-out; return with the same email/password on this browser. This is local UX-demo identity, not server authentication.
 
-Strava and AllTrails are optional **concept previews**, with explicitly fictional sample history. No accounts are connected. See [onboarding, provider research, and the proposed backend](docs/ONBOARDING-AND-CONNECTIONS.md). New reservations reuse the profile name in the booking checklist.
+External activity options have been removed. See [the five-step onboarding flow](docs/ONBOARDING.md). New reservations reuse the profile name in the booking checklist.

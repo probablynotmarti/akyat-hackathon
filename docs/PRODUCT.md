@@ -31,4 +31,4 @@ Original implementation inspired by the rendered public Akyat website: warm crea
 The homepage price experiment is explicitly illustrative and separate from reservations. The actual booking panel remains authoritative for party count, locked quotes, and full per-person fees.
 
 ## First-visit onboarding
-Registration, returning demo login, animated arrival, and preference-based recommendations now precede discovery. Read [ONBOARDING-AND-CONNECTIONS.md](ONBOARDING-AND-CONNECTIONS.md) for the exact data boundary, prototype behavior, provider findings, and proposed backend. Strava/AllTrails screens are explicitly optional concept previews with synthetic history, never real connections.
+Registration, returning demo login, animated arrival, and preference-based recommendations now precede discovery. Read [ONBOARDING.md](ONBOARDING.md) for the exact data boundary and five-step flow. Suggestions use only onboarding answers.

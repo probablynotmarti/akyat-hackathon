@@ -1,12 +1,14 @@
 # Carlos: start here
 
+**Final recording sprint:** [70-minute readiness checklist](RECORDING-READINESS.md) assigns the remaining engineering, pitch, and video work.
+
 **New priority:** [Read the three-hike photo brief](HIKE-PHOTO-BRIEF.md): Mt. Talamitam, Mt. Batulao, and Mt. Ulap. You may supply correctly sourced photos in `public/images/hikes/` using its exact filenames, and record the sources in `collaboration/carlos/photo-sources.md`.
 
 Paste the following into your Codex chat after opening or cloning https://github.com/probablynotmarti/akyat-hackathon:
 
 > You are helping Carlos on the Akyat UX hackathon. Read AGENTS.md, docs/PRODUCT.md, and docs/ROLES.md. I own the pitch, video, UX copy proposals, and usability feedback. Marti and his Codex own all engineering. Work in collaboration/carlos/; you may also add sourced photos to public/images/hikes/ following docs/HIKE-PHOTO-BRIEF.md. Create a carlos/pitch-video branch if using a separate checkout. We have a three-hour total build window and may only use Codex for creation; existing app code cannot be reused. First produce a six-slide pitch outline, a 60–90 second narration draft with shot-by-shot storyboard, and a five-minute usability checklist. Create editable text artifacts first; confirm the event's required deck/video formats before rendering final media. Map our evidence to problem/value 30%, UX 30%, AI mastery 25%, originality 15%. Use docs/PRODUCT.md as the approved product source. Distinguish implemented behavior, demo simulation, and future work. Do not invent research, quotes, official partnerships, accreditation, safety claims, or AI outcomes. Ask me only for missing event requirements or decisions that materially affect the deliverable; continue independent work. Keep engineering feedback in collaboration/carlos/ux-findings.md and do not modify application code. Commit/push your work only when I authorize it.
 
-**New opening sequence:** [Onboarding and connections](ONBOARDING-AND-CONNECTIONS.md) documents the welcome, registration, trail questions, and animated arrival. Strava/AllTrails are concept previews, not connected services.
+**New opening sequence:** [Onboarding](ONBOARDING.md) documents the welcome, registration, trail questions, and animated arrival. The flow has five steps and uses only the hiker’s answers.
 
 ## Deliverables you can own without coding
 1. `pitch-outline.md`: six slides — problem, person/journey, solution, price-drop moment, trust/pass, Codex process and next steps.

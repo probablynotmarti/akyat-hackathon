@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { makeAccount, verifyLogin, validateDetails, validatePassword, trailMatch, ACCOUNT_KEY, SESSION_KEY, readSession, publicProfile } from '../src/onboarding-model.js';
-const form={name:'Alex Demo',email:' Alex@Example.com ',birthday:'1998-06-12',phone:'+63 900 000 0000',password:'DemoTrailOnly42',confirmation:'DemoTrailOnly42',experience:'some',comfort:'half',preference:'people',sampleHistory:false};
+const form={name:'Alex Demo',email:' Alex@Example.com ',birthday:'1998-06-12',phone:'+63 900 000 0000',password:'DemoTrailOnly42',confirmation:'DemoTrailOnly42',experience:'some',comfort:'half',preference:'people'};
 const storage = initial => { const data=new Map(Object.entries(initial||{}));return {getItem:key=>data.get(key)||null,setItem:(key,value)=>data.set(key,value)}; };
 
 test('registration rejects impossible birthdays, missing country codes, and mismatched passwords',()=>{
@@ -29,13 +29,13 @@ test('a demo session requires the matching stored account and clears when signed
   local.setItem(ACCOUNT_KEY,'malformed');assert.equal(readSession(local,session),null);
 });
 test('first-time hikers and short-day preferences stay on the gentler suggestion',()=>{
-  assert.equal(trailMatch({...form,experience:'first',comfort:'full',preference:'challenge',sampleHistory:true}).id,'mt-talamitam');
+  assert.equal(trailMatch({...form,experience:'first',comfort:'full',preference:'challenge'}).id,'mt-talamitam');
   assert.equal(trailMatch({...form,experience:'regular',comfort:'short',preference:'challenge'}).id,'mt-talamitam');
 });
-test('optional sample history changes the suggestion with an honest explanation',()=>{
+test('recommendations use only onboarding answers and ignore obsolete imported-history flags',()=>{
   const experienced={...form,experience:'regular',comfort:'full',preference:'challenge'};
   assert.equal(trailMatch(experienced).id,'mt-ulap');
-  const match=trailMatch({...experienced,sampleHistory:true});
-  assert.equal(match.id,'mt-talamitam');assert.match(match.reason,/sample history/);assert.match(match.reason,/No real activity account/);
+  assert.deepEqual(trailMatch({...experienced,sampleHistory:true}),trailMatch(experienced));
   assert.equal(trailMatch(form).id,'mt-batulao');
+  assert.equal('sampleHistory' in publicProfile({...form,id:'legacy',sampleHistory:true}),false);
 });

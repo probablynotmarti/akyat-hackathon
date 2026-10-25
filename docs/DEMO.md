@@ -2,7 +2,7 @@
 
 ## Before recording
 - Open one browser and keep the full journey in that browser. Bookings are local.
-- First visit: First time here → fill sample details → choose a demo-only password → experience and preferred outing → skip connection previews or try fictional sample history → create demo account.
+- First visit: First time here → fill sample details → choose a demo-only password → experience and preferred outing → create demo account.
 - Returning visit: Log in using that browser’s demo account. The profile button lets you sign out and demonstrate the welcome/login sequence again.
 - Use Demo controls → Reset demo to restore the initial sample group.
 - Keep browser zoom at 100%. Desktop and mobile layouts are available.

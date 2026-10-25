@@ -1,7 +1,6 @@
 // Local UX-demo identity only. Production authentication belongs on a server.
 export const ACCOUNT_KEY = 'akyat-demo-profile-v1';
 export const SESSION_KEY = 'akyat-demo-session-v1';
-export const SAMPLE_HISTORY = Object.freeze({ hikes: 4, typicalDistance: 4.2, typicalAscent: 220, days: 60 });
 export const EXPERIENCE = { first: 'First-time hiker', some: 'Hiked a few times', regular: 'Experienced hiker' };
 export const normalizeEmail = email => email.trim().toLowerCase();
 export const localToday = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Manila', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
@@ -30,7 +29,7 @@ export function validAccount(a) {
 }
 export function readAccount(storage) { try { const a = JSON.parse(storage.getItem(ACCOUNT_KEY)); return validAccount(a) ? a : null; } catch { return null; } }
 export function publicProfile(account) {
-  return { id: account.id, name: account.name, email: account.email, experience: account.experience, comfort: account.comfort, preference: account.preference, sampleHistory: account.sampleHistory === true };
+  return { id: account.id, name: account.name, email: account.email, experience: account.experience, comfort: account.comfort, preference: account.preference };
 }
 export async function makeAccount(form) {
   const error = validateDetails(form) || validatePassword(form.password, form.confirmation);
@@ -38,7 +37,7 @@ export async function makeAccount(form) {
   if (!(Object.hasOwn(EXPERIENCE, form.experience)) || !['short','half','full'].includes(form.comfort) || !['scenery','people','challenge'].includes(form.preference)) throw new Error('Choose your hiking experience, pace, and what you enjoy.');
   const salt = hex(crypto.getRandomValues(new Uint8Array(16)));
   // Explicit allowlist: birthday, phone, and plaintext passwords never persist.
-  return { version: 1, id: crypto.randomUUID(), name: form.name.trim(), email: normalizeEmail(form.email), experience: form.experience, comfort: form.comfort, preference: form.preference, sampleHistory: form.sampleHistory === true, salt, verifier: await derive(form.password, salt) };
+  return { version: 1, id: crypto.randomUUID(), name: form.name.trim(), email: normalizeEmail(form.email), experience: form.experience, comfort: form.comfort, preference: form.preference, salt, verifier: await derive(form.password, salt) };
 }
 export async function verifyLogin(account, email, password) {
   if (!validAccount(account) || normalizeEmail(email) !== account.email) return false;
@@ -50,7 +49,6 @@ export function readSession(local, session) {
 export function trailMatch(profile) {
   if (profile.experience === 'first') return { id: 'mt-talamitam', reason: 'You’re starting fresh. This sample departure has our gentlest pace and a small group to find your feet with.' };
   if (profile.comfort === 'short') return { id: 'mt-talamitam', reason: 'You asked for a shorter day. This is the shortest sample itinerary in our three-mountain collection.' };
-  if (profile.sampleHistory) return { id: 'mt-talamitam', reason: 'The sample history shows mostly 4.2 km outings. This shorter sample itinerary is a closer starting match. No real activity account was connected.' };
   if (profile.experience === 'regular' && profile.comfort === 'full' && profile.preference === 'challenge') return { id: 'mt-ulap', reason: 'You hike regularly and want a full day with a rewarding climb. This is our longer sample itinerary.' };
   return { id: 'mt-batulao', reason: 'You have a few hikes behind you and time for a longer outing. This sample ridge departure is a place to explore next.' };
 }

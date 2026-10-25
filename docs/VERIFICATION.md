@@ -35,6 +35,7 @@ Recorded October 25, 2026 (Asia/Manila).
 - Browser console showed no error or warning entries during the final flow. Camera/upload limits above remain unchanged.
 
 ## First-visit onboarding follow-up
+Historical verification of the earlier six-step design; the connection-removal update below supersedes its provider-related behavior.
 - **20/20 tests passed**. New tests cover invalid registration data, credential verification/rejection, exclusion of plaintext password/birthday/phone from saved accounts, session/account matching, beginner preference protection, and explained synthetic-history recommendations.
 - Production build passed (non-blocking Vite bundle-size advisory: about 205 kB gzip JavaScript).
 - Desktop welcome and 390 × 844 mobile welcome, details, experience, and suggestion screens visually inspected. A mobile headline wrap issue was corrected.
@@ -42,3 +43,9 @@ Recorded October 25, 2026 (Asia/Manila).
 - Profile showed the submitted name, email, hiking level, and sample-history label. Sign-out returned to the introduction. Wrong-password login showed an error; correct login returned to the app. Reload retained the local session.
 - New party reservation carried the profile name into the booking requirements form, avoiding duplicate entry.
 - No live provider connection or activity import was made. Camera/upload verification limits remain unchanged. Reduced-motion behavior is implemented, but the OS preference was not toggled in this run.
+
+## Connection removal before recording
+- Removed provider cards, preview dialogs, synthetic activity history, related styles, and the connection step. Registration now has five steps.
+- Recommendations and profile labels use onboarding answers only. Legacy imported-history flags do not affect results or appear in the public profile.
+- All 20 automated tests passed and the production build passed. The bundle-size advisory remains non-blocking.
+- Earlier browser checks above describe the previous version; this removal was verified through source review, tests, and build, without repeating the full browser recording journey.
