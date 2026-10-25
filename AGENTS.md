@@ -7,6 +7,7 @@ Read `docs/PRODUCT.md` before changing product behavior. Read `docs/ROLES.md` be
 ## Ownership
 - Marti's Codex owns app source, tests, dependencies, hosting, this file, and product decisions.
 - Carlos's Codex owns `collaboration/carlos/`: pitch, narration, storyboard, copy proposals, and UX findings. Propose engineering changes there rather than modifying app source.
+- Carlos also owns photo additions in `public/images/hikes/`. Read `docs/HIKE-PHOTO-BRIEF.md` for the complete three-hike list, exact filenames, sourcing, and crop requirements before collecting images. Preserve source/permission evidence in `collaboration/carlos/photo-sources.md`.
 - Preserve the other person's work. On separate checkouts, pull before starting. Carlos uses a `carlos/pitch-video` branch and shares commits or a PR; merge only with Marti's approval.
 
 ## Demo boundaries

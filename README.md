@@ -6,6 +6,8 @@ An original UX hackathon prototype: find a small hiking party, share the guide c
 
 ## Carlos: start here
 
+**Photo sourcing:** [Complete hike list and image brief](docs/HIKE-PHOTO-BRIEF.md) — Mt. Talamitam, Mt. Batulao, Mt. Ulap.
+
 Read [your ready-to-paste Codex handoff](docs/CARLOS-START-HERE.md). [Team roles](docs/ROLES.md) define ownership and the three-hour schedule. Carlos owns pitch/video/UX artifacts in `collaboration/carlos/`; Marti owns engineering.
 
 ## Run locally
