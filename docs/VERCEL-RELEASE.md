@@ -1,5 +1,7 @@
 # Vercel release
 
+**Final recording update:** [Fast payment, invitation, trust and safe-return walkthrough](FINAL-DEMO-FEATURES.md). Pinatubo and Ulap start at 5/6 on a fresh/reset demo and lock automatically when you join.
+
 Live app: https://akyat-hackathon-marti-2026.vercel.app
 
 Vercel project: akyat-hackathon-marti-2026, in the existing signed-in account. This is separate from the older Akyat website and the Sites preview. Use this Vercel link for partner testing.

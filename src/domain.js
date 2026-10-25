@@ -35,20 +35,20 @@ export function createInitialState() {
         id: 'mt-pinatubo', name: 'Mt. Pinatubo', location: 'Capas, Tarlac', tagline: 'Take the scenic route. All of it.',
         difficulty: 'A little challenge', level: 2, distance: 6.5, ascent: 550, duration: '4–5 hours', terrain: 'Crater approach · uneven volcanic terrain',
         description: 'A sample crater-view departure at Pinatubo. Transport and access arrangements must be confirmed with a real operator. Explore an organizer-led day with time to enjoy the landscape and meet your trail people. Route figures below are illustrative itinerary values, not verified trail measurements.',
-        image: '/images/hikes/mt-pinatubo.jpg', photoFallback: '/images/trail-study-02.svg', guideFee: 120000, personalFees: 10000, capacity: 6, minimum: 3,
+        demoSeedRevision: 2, autoCloseWhenFull: true, image: '/images/hikes/mt-pinatubo.jpg', photoFallback: '/images/trail-study-02.svg', guideFee: 120000, personalFees: 10000, capacity: 6, minimum: 3,
         departureAt: '2026-11-14T07:00:00+08:00', closesAt: '2026-11-11T18:00:00+08:00', paymentDueAt: '2026-11-12T18:00:00+08:00',
         guide: 'Nico Flores', guideInitials: 'NF', organizer: 'Slow Sunday Outdoors', meetup: 'Pinatubo meeting point · demo location', phase: 'open',
-        members: [member('Sofia Lim', 'Nature lover', 'peach', 'b1'), member('Alex Tan', 'First hike', 'sage', 'b2')],
+        members: [member('Sofia Lim', 'Nature lover', 'peach', 'b1'), member('Alex Tan', 'First hike', 'sage', 'b2'), member('Nina Reyes', 'Weekend hiker', 'peach', 'b3'), member('Chris Cruz', 'Trail regular', 'blue', 'b4'), member('Lee Santos', 'Visiting PH', 'sage', 'b5')],
         highlights: ['Crater views', 'Small-group departure', 'A change of perspective'],
       },
       {
         id: 'mt-ulap', name: 'Mt. Ulap', location: 'Itogon, Benguet', tagline: 'For the view you will keep talking about.',
         difficulty: 'A little challenge', level: 2, distance: 8.6, ascent: 740, duration: '5–6 hours', terrain: 'Steep sections · exposed ridges',
         description: 'A sample longer-day departure on the Mt. Ulap Eco-Trail, known for its pine and grassland ridges. Review the organizer’s actual route before a real hike; the route figures here are illustrative itinerary values.',
-        image: '/images/hikes/mt-ulap.jpg', photoFallback: '/images/trail-study-03.svg', guideFee: 240000, personalFees: 20000, capacity: 8, minimum: 4,
+        demoSeedRevision: 2, autoCloseWhenFull: true, image: '/images/hikes/mt-ulap.jpg', photoFallback: '/images/trail-study-03.svg', guideFee: 240000, personalFees: 20000, capacity: 6, minimum: 4,
         departureAt: '2026-11-15T05:00:00+08:00', closesAt: '2026-11-12T18:00:00+08:00', paymentDueAt: '2026-11-13T18:00:00+08:00',
         guide: 'Dani Rivera', guideInitials: 'DR', organizer: 'Slow Sunday Outdoors', meetup: 'Ampucao meeting point · demo location', phase: 'open',
-        members: [member('Sam Garcia', 'Trail regular', 'blue', 'c1'), member('Pat Santos', 'Weekend hiker', 'sage', 'c2'), member('Kai Ramos', 'Trail regular', 'peach', 'c3'), member('Ivy Chen', 'Visiting PH', 'lilac', 'c4')],
+        members: [member('Sam Garcia', 'Trail regular', 'blue', 'c1'), member('Pat Santos', 'Weekend hiker', 'sage', 'c2'), member('Kai Ramos', 'Trail regular', 'peach', 'c3'), member('Ivy Chen', 'Visiting PH', 'lilac', 'c4'), member('Toni Reyes', 'Weekend hiker', 'sage', 'c5')],
         highlights: ['Panoramic ridges', 'A rewarding climb', 'Steady hiking pace'],
       },
       {
@@ -100,10 +100,11 @@ export function joinParty(trip, options = {}) {
   if (activeMembers(trip).length >= trip.capacity) throw new Error('This party is full. Try another departure.');
   if (options.isYou && myBooking(trip)) throw new Error('You already have a place in this party.');
   const id = options.id || newId();
-  return { ...trip, members: [...trip.members, {
+  const joined = { ...trip, members: [...trip.members, {
     id, passId: options.passId || newId(), name: options.name || 'You', place: options.isYou ? 'Your next adventure' : 'Invited friend',
     color: options.isYou ? 'green' : 'lilac', status: 'reserved', isYou: Boolean(options.isYou), waiver: false, gear: false,
   }] };
+  return joined.autoCloseWhenFull && activeMembers(joined).length === joined.capacity ? closeRegistration(joined) : joined;
 }
 
 export function closeRegistration(trip) {
@@ -151,8 +152,9 @@ export function cancelBooking(trip, memberId, now = Date.now()) {
 
 export function checkIn(trip, memberId) {
   const member = trip.members.find(m => m.id === memberId);
+  const now = trip.demoNow || Date.now();
   if (passStatus(trip, member) !== 'ready') throw new Error(passStatus(trip, member) === 'checked-in' ? 'This pass has already been used to check in.' : 'This pass is not ready for check-in.');
-  return { ...trip, members: trip.members.map(m => m.id === memberId ? { ...m, checkedIn: true, checkedInAt: new Date().toISOString() } : m) };
+  return { ...trip, members: trip.members.map(m => m.id === memberId ? { ...m, checkedIn: true, checkedInAt: new Date(now).toISOString(), expectedReturnAt: new Date(now + (Number.parseInt(trip.duration) + 1) * 3600000).toISOString() } : m) };
 }
 
 export function recommendation(answers) {
@@ -175,7 +177,34 @@ export function refreshCatalog(saved) {
   return { ...seeds, trips: seeds.trips.map(seed => {
     const old = saved.trips.find(t => t.id === seed.id || LEGACY_TRIP_IDS[t.id] === seed.id);
     if (!old) return seed;
-    const live = Object.fromEntries(['members', 'phase', 'lockedCount', 'organizerShortfall', 'cancellationReason'].filter(key => key in old).map(key => [key, old[key]]));
-    return { ...seed, ...live };
+    if (seed.demoSeedRevision && old.demoSeedRevision !== seed.demoSeedRevision && old.phase === 'open' && !old.members.some(m => m.isYou)) return seed;
+    const live = Object.fromEntries(['members', 'phase', 'lockedCount', 'organizerShortfall', 'cancellationReason', 'demoNow'].filter(key => key in old).map(key => [key, old[key]]));
+    return { ...seed, ...live, capacity: old.members.some(m => m.isYou) ? Math.max(seed.capacity, old.capacity || seed.capacity, activeMembers(old).length) : seed.capacity };
   }).concat(saved.trips.filter(t => !seeds.trips.some(seed => seed.id === (LEGACY_TRIP_IDS[t.id] || t.id)) && t.members.some(m => m.isYou)).map(t => ({ ...t, id: LEGACY_TRIP_IDS[t.id] || t.id }))) };
+}
+
+
+export function safeReturnStatus(trip, member, now = trip.demoNow || Date.now()) {
+  if (!member || member.status !== 'paid' || trip.phase === 'cancelled') return 'inactive';
+  if (!member.checkedIn) return 'not-started';
+  if (member.checkedOutAt) return 'returned';
+  return member.expectedReturnAt && now > new Date(member.expectedReturnAt).getTime() ? 'overdue' : 'on-trail';
+}
+export function checkOut(trip, memberId) {
+  const m=trip.members.find(m=>m.id===memberId);
+  if (!['on-trail','overdue'].includes(safeReturnStatus(trip,m))) throw new Error('Only a checked-in hiker still on the trail can check out.');
+  return {...trip,members:trip.members.map(m=>m.id===memberId?{...m,checkedOutAt:new Date(trip.demoNow || Date.now()).toISOString()}:m)};
+}
+export function simulateOverdue(trip, memberId) {
+  const m=trip.members.find(m=>m.id===memberId);
+  if (safeReturnStatus(trip,m)!=='on-trail') throw new Error('Check in first; returned hikers cannot become overdue.');
+  const expected=m.expectedReturnAt || new Date(Date.now()+3600000).toISOString();
+  return {...trip,demoNow:new Date(expected).getTime()+60000,members:trip.members.map(m=>m.id===memberId?{...m,expectedReturnAt:expected}:m)};
+}
+export function setBuddy(trip, memberId, requested) {
+  const m=trip.members.find(m=>m.id===memberId);
+  if (!m || !['reserved','paid'].includes(m.status) || trip.phase==='cancelled') throw new Error('Join an active party before choosing a buddy.');
+  const buddy=activeMembers(trip).find(m=>m.id!==memberId);
+  if (requested && !buddy) throw new Error('A buddy can be paired when another hiker joins.');
+  return {...trip,members:trip.members.map(m=>m.id===memberId?{...m,buddyId:requested?buddy.id:null}:m)};
 }

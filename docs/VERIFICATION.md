@@ -59,3 +59,12 @@ Historical verification of the earlier six-step design; the connection-removal u
 - Production build passed with the existing non-blocking bundle-size advisory (approximately 204 KB gzip JavaScript).
 - Final automated suite: **22/22 passed**, including fresh-browser shared-demo sessions and three-to-seven catalog migration with retired booked destinations preserved.
 - Public Vercel alias returned HTTP 200 without authentication. Exact supplied demo credentials successfully opened the seven-mountain homepage on Vercel; browser console contained no warnings or errors during that check.
+
+## Final demo-flow repair
+- **26/26 tests passed**: added express-lobby auto-close/fee/pass coverage, untouched-lobby migration, buddy pairing, and safe-return state transitions/persistence.
+- Browser checked invitation Yes and No branches. Yes preserved Pinatubo through the shared login; No returned to the ordinary welcome screen and cleared the invitation.
+- Browser completed both Pinatubo (₱300) and Ulap (₱600) checkout paths from their 5/6 seeds without opening Demo controls to fill or close the group. Both generated real personal QR images and itemized receipts.
+- Pinatubo buddy pairing was exercised. Organizer check-in, overdue simulation, alert preview and safe-return checkout worked; returned status persisted after reload and second admission remained blocked.
+- Organizer lookup now selects the scanned departure's roster. Opening organizer from a pass retains that pass's departure, including when two personal bookings exist.
+- Mobile pass inspected at 390 × 844 with document width equal to viewport. No camera permission or physical-phone QR scan was performed by Codex in this run.
+- Published the final flows to the existing Vercel alias. Live browser inspection confirmed Pinatubo and Ulap each show 5/6 and the new invitation prompt is served before authentication.

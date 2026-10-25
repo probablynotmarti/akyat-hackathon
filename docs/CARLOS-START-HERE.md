@@ -1,5 +1,7 @@
 # Carlos: start here
 
+**Final recording update:** [Fast payment, invitation, trust and safe-return walkthrough](FINAL-DEMO-FEATURES.md). Pinatubo and Ulap start at 5/6 on a fresh/reset demo and lock automatically when you join.
+
 > Update: Marti supplied photos and expanded the current catalog to seven mountains. See [PHOTO-SELECTION.md](PHOTO-SELECTION.md); earlier three-mountain sourcing notes below are historical.
 
 **Final recording sprint:** [70-minute readiness checklist](RECORDING-READINESS.md) assigns the remaining engineering, pitch, and video work.

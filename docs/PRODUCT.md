@@ -6,7 +6,7 @@ New hikers, foreign visitors, and current hikers. The demo follows a first-time 
 First-visit welcome → local demo registration/login → hiking preferences → explained suggestion → discover a suitable departure → optional readiness check → join a scheduled party → invite friends through a public link/QR → see the estimated guide share fall → registration closes and price locks → complete requirements and simulated payment → receive a personal Jump-off Pass → organizer validates and checks in.
 
 ## Pricing and booking rules
-- Organizer sets the departure, capacity, minimum group, group guide fee, individual fees, and requirements.
+- Organizer sets the departure, capacity, minimum group, group guide fee, individual fees, and requirements. Pinatubo and Ulap are explicit express demo scenarios: five of six places are seeded, and the sixth join closes registration automatically.
 - Group guide fee divided by reserved hikers produces the current estimate; per-person fees are additional. Estimates may rise when hikers leave before closing.
 - Below minimum at closing: cancel before collecting money. Otherwise lock quotes and open payment.
 - Unpaid reservations expire at the payment deadline. Locked quotes never increase. Organizer may cover the shortfall and proceed or cancel and simulate full refunds.
@@ -23,10 +23,13 @@ Fictional organizer/guide/participant profiles with demo badges clearly labeled.
 Original mobile-first responsive web application, with a full desktop layout for judging. No native installation is required. Seeded departures and browser persistence. Public links identify a seeded party, but bookings are not synchronized across devices. Organizer view is a local role simulation, not production authentication. Simulated payments, waiver and refunds. No real money, verification, accreditation, emergency alerts, medical assessment, or official trail acceptance. Use fictional personal data. No reuse of the pre-existing Akyat app.
 
 ## Deferred
-Chat, feeds, real identity verification, endorsements, women-only lobbies, buddy matching, automatic overdue alerts, translation, and currency conversion. AI product features are optional; prioritize evidence of thoughtful Codex use.
+Chat, feeds, real identity verification, real endorsements, women-only lobbies, real overdue alerts, translation, and currency conversion. AI product features are optional; prioritize evidence of thoughtful Codex use.
 
 ## Visual direction
 Minimal photography direction from Marti's approved design handoff: off-white canvas, charcoal actions, Archivo, a compact generic mountain atmosphere, and supplied destination photos. Seven departures appear before the illustrative shared-price story. Cards and booking panels lead with total cost, with guide share explicitly separated. Mobile shows booking controls before detailed trail content. Short GSAP transitions respect reduced motion. See PHOTO-SELECTION.md for provenance.
 
 ## First-visit onboarding
 Registration, returning demo login, animated arrival, and preference-based recommendations now precede discovery. Read [ONBOARDING.md](ONBOARDING.md) for the exact data boundary and five-step flow. Suggestions use only onboarding answers.
+
+## Final rehearsal scope
+See FINAL-DEMO-FEATURES.md for the current trust, invitation and safe-return implementation and its simulation boundaries. Buddy pairing, return checkout, an overdue-clock simulation and a not-sent emergency-contact alert preview are now implemented locally. Verification/accreditation/endorsements remain labeled sample content.

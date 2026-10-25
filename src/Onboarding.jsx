@@ -1,3 +1,4 @@
+import { createInitialState } from './domain';
 import { DEMO_ACCOUNT } from './demo-account.js';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
@@ -30,11 +31,20 @@ function Arrival({ profile, onDone, returning }) {
 
 export function AccountExperience({ children }) {
   const [profile,setProfile] = useState(() => { try { return readSession(localStorage,sessionStorage); } catch { return null; } });
-  const signOut = () => { try { sessionStorage.removeItem(SESSION_KEY); } catch {} window.location.hash='explore'; setProfile(null); window.scrollTo(0,0); };
-  return profile ? children(profile,signOut) : <Onboarding onComplete={p => { setProfile(p); window.scrollTo(0,0); }}/>;
+  const [invitation,setInvitation] = useState(() => createInitialState().trips.find(t=>t.id===new URLSearchParams(window.location.search).get('party')) || null);
+  const [invitedName,setInvitedName] = useState('');
+  const chooseInvite = yes => {
+    const destination=yes ? `trip/${invitation.id}` : 'explore';
+    const url=new URL(window.location.href); url.searchParams.delete('party'); url.hash=destination;
+    window.history.replaceState(null,'',url); window.dispatchEvent(new HashChangeEvent('hashchange'));
+    setInvitedName(yes?invitation.name:''); setInvitation(null); window.scrollTo(0,0);
+  };
+  const signOut = () => { try { sessionStorage.removeItem(SESSION_KEY); } catch {} window.location.hash='explore'; setInvitedName(''); setProfile(null); window.scrollTo(0,0); };
+  if(invitation) return <div className="invitation-entry"><img src={invitation.image} alt={invitation.name}/><main><span className="eyebrow">YOU’VE BEEN INVITED</span><h1>Joining {invitation.name}?</h1><p>{invitation.location}. Meet your group, share the guide fee, and get ready for the trail.</p><p className="small muted">This invitation opens a sample party. Your place is reserved only after you choose Join this party.</p><button className="button primary full" onClick={()=>chooseInvite(true)}>Yes, let’s join <ArrowRight size={18}/></button><button className="button secondary full" onClick={()=>chooseInvite(false)}>No, take me home</button></main></div>;
+  return profile ? children(profile,signOut) : <Onboarding invitedName={invitedName} onComplete={p => { setProfile(p); window.scrollTo(0,0); }}/>;
 }
 
-function Onboarding({ onComplete }) {
+function Onboarding({ onComplete, invitedName }) {
   const [screen,setScreen] = useState('welcome'); const [step,setStep] = useState(0);
   const [existing] = useState(() => { try { return readAccount(localStorage); } catch { return null; } });
   const [form,setForm] = useState({ name:'',email:'',birthday:'',phone:'',password:'',confirmation:'',experience:'',comfort:'',preference:'' });
@@ -90,7 +100,7 @@ function Onboarding({ onComplete }) {
     <header className="entry-header"><Logo onClick={()=>navigate('welcome')}/><span>OUTSIDE, TOGETHER</span><span className="entry-demo-badge">Demo account</span></header>
     <div className="entry-layout">
       <aside className="entry-art" aria-hidden="true"><img src="/images/brand/mountain-1600.webp" srcSet="/images/brand/mountain-800.webp 800w, /images/brand/mountain-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 42vw" alt=""/></aside>
-      <main className="entry-panel">
+      <main className="entry-panel">{invitedName && <p className="invite-context">Joining {invitedName} · log in or register to continue.</p>}
         {screen!=='welcome'&&<button className="entry-back" onClick={back} disabled={busy}><ArrowLeft size={16}/>{screen==='register'&&step>0?'Previous step':'Back to the beginning'}</button>}
         {screen==='welcome' ? <section className="entry-welcome-content"><span className="eyebrow entry-reveal">YOUR NEXT CHAPTER STARTS HERE</span><h1 ref={title} tabIndex={-1} className="entry-reveal">Good trails.<br/>Better company.</h1><p className="entry-lead entry-reveal">Your next adventure starts with a hello.<br/>Find your people. Share the climb.</p><div className="entry-welcome-actions entry-reveal"><button className="button primary" onClick={showRegister}>First time here <ArrowUpRight size={20}/></button><button className="button secondary" onClick={()=>navigate('login')}>Log in <ArrowRight size={18}/></button></div><div className="entry-welcome-note entry-reveal"><span className="entry-mini-avatars"><span>YOU</span><span>+</span><span>US</span></span><p>No trail experience required.<br/>Just a little curiosity.</p></div><p className="entry-disclaimer entry-reveal">A hackathon account demo, saved only in this browser.<br/>Use made-up details and a password you don’t use elsewhere.</p></section> : screen==='login' ? <section className="entry-form-content"><span className="eyebrow entry-reveal">PICK UP WHERE YOU LEFT OFF</span><h1 ref={title} tabIndex={-1} className="entry-reveal">Welcome back.</h1><p className="entry-lead entry-reveal">Log in to your demo trail profile.</p><form onSubmit={signIn} className="entry-form entry-reveal"><label>Email address<input type="email" autoComplete="off" required maxLength={254} value={login.email} onChange={e=>setLogin({...login,email:e.target.value})} placeholder="you@example.com"/></label><label>Password<div className="entry-password"><input type={visible?'text':'password'} autoComplete="off" required value={login.password} onChange={e=>setLogin({...login,password:e.target.value})} placeholder="Your demo password"/><button type="button" aria-label={visible?'Hide password':'Show password'} onClick={()=>setVisible(v=>!v)}>{visible?<EyeOff size={18}/>:<Eye size={18}/>}</button></div></label>{error&&<p role="alert" className="entry-error">{error}</p>}<button className="button primary full" disabled={busy}>{busy?'Opening your trail book…':'Log in'}<ArrowRight size={18}/></button></form><button className="entry-text-link" onClick={showRegister}>First time here? Start your story <ArrowUpRight size={14}/></button><p className="entry-disclaimer entry-reveal">Use the shared hackathon login or an account created in this browser. Bookings stay on this device. No email verification or password recovery.</p></section> : <section className="entry-form-content">
           <div className="entry-progress" aria-label={`Step ${step+1} of 5: ${steps[step]}`}><div>{steps.map((label,i)=><span key={label} className={i<=step?'reached':''}/>)}</div><span>0{step+1} / 05 <b>{steps[step]}</b></span></div>

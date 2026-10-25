@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createInitialState, splitFee, joinParty, estimatedShare, closeRegistration, updateRequirements, payBooking, expireUnpaid, cancelDeparture, cancelBooking, passStatus, checkIn, recommendation, validateSavedState, refreshCatalog } from '../src/domain.js';
+import { createInitialState, splitFee, joinParty, estimatedShare, closeRegistration, updateRequirements, payBooking, expireUnpaid, cancelDeparture, cancelBooking, passStatus, checkIn, recommendation, validateSavedState, refreshCatalog, safeReturnStatus, checkOut, simulateOverdue, setBuddy } from '../src/domain.js';
 
 const base = () => createInitialState().trips[0];
 const join = (t = base()) => joinParty(t, { isYou: true, name: 'Demo Hiker', id: 'you', passId: 'opaque-test-pass' });
@@ -22,7 +22,7 @@ test('duplicate reservation and joining after close are rejected', () => {
   assert.throws(() => joinParty(closeRegistration(join())), /closed/);
 });
 test('below minimum cancels without collecting payment', () => {
-  const t = closeRegistration(createInitialState().trips[1]);
+  const t = closeRegistration(createInitialState().trips[3]);
   assert.equal(t.phase, 'cancelled'); assert.equal(t.members.some(m => m.status === 'paid'), false);
 });
 test('unpaid and incomplete bookings cannot produce a valid admission', () => {
@@ -87,4 +87,43 @@ test('seven-mountain refresh keeps existing bookings and retains a retired booke
   assert.equal(fresh.trips.find(t=>t.id==='mt-batulao').members.find(m=>m.isYou).passId,'legacy-pass');
   assert.equal(fresh.trips.find(t=>t.id==='mt-batulao').name,'Mt. Batulao');
   assert.equal(createInitialState().trips.length,7);
+});
+
+
+test('two express departures start at five of six and the last join unlocks payment',()=>{
+  for(const id of ['mt-pinatubo','mt-ulap']) {
+    let t=createInitialState().trips.find(t=>t.id===id);
+    assert.equal(t.members.length,5); assert.equal(t.capacity,6);
+    const before=estimatedShare(t);
+    t=joinParty(t,{isYou:true,id:'you',passId:'express-pass'});
+    assert.equal(t.phase,'payment'); assert.equal(t.members.length,6);
+    assert.ok(you(t).lockedShare<before);
+    assert.throws(()=>payBooking(t,'you'),/checklist/);
+    t=payBooking(complete(t),'you');assert.equal(passStatus(t,you(t)),'ready');
+    assert.equal(you(t).paidAmount,id==='mt-pinatubo'?30000:60000);
+    assert.throws(()=>joinParty(t),/closed/);
+  }
+});
+test('express seeds refresh untouched old lobbies without replacing an active booking',()=>{
+  const old=createInitialState(); const t=old.trips[1]; delete t.demoSeedRevision;t.members=t.members.slice(0,2);
+  assert.equal(refreshCatalog(old).trips[1].members.length,5);
+  old.trips[1]=joinParty(t,{isYou:true,id:'you',passId:'keep-me'});
+  const preserved=refreshCatalog(old).trips[1];assert.equal(preserved.members.length,3);assert.equal(you(preserved).passId,'keep-me');
+});
+test('safe return requires check-in, marks overdue, and resolves permanently at checkout',()=>{
+  let t=paid();assert.equal(safeReturnStatus(t,you(t)),'not-started');
+  assert.throws(()=>checkOut(t,'you'),/checked-in/);assert.throws(()=>simulateOverdue(t,'you'),/Check in/);
+  t=checkIn(t,'you');assert.equal(safeReturnStatus(t,you(t)),'on-trail');
+  assert.ok(you(t).expectedReturnAt);
+  t=simulateOverdue(t,'you');assert.equal(safeReturnStatus(t,you(t)),'overdue');
+  t=checkOut(t,'you');assert.equal(safeReturnStatus(t,you(t)),'returned');
+  assert.throws(()=>checkOut(t,'you'),/checked-in/);assert.throws(()=>simulateOverdue(t,'you'),/returned/);
+  assert.throws(()=>checkIn(t,'you'),/already/);
+  assert.equal(safeReturnStatus(cancelDeparture(t),you(cancelDeparture(t))),'inactive');
+  assert.equal(safeReturnStatus(refreshCatalog({...createInitialState(),trips:[t,...createInitialState().trips.slice(1)]}).trips[0],you(t)),'returned');
+});
+test('buddy pairing is optional, persists, and cannot be set on inactive bookings',()=>{
+  let t=join();t=setBuddy(t,'you',true);assert.equal(you(t).buddyId,t.members[0].id);
+  t=setBuddy(t,'you',false);assert.equal(you(t).buddyId,null);
+  assert.throws(()=>setBuddy(cancelDeparture(t),'you',true),/active/);
 });

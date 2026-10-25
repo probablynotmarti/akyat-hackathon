@@ -1,5 +1,7 @@
 # Akyat demo walkthrough
 
+**Final recording update:** [Fast payment, invitation, trust and safe-return walkthrough](FINAL-DEMO-FEATURES.md). Pinatubo and Ulap start at 5/6 on a fresh/reset demo and lock automatically when you join.
+
 ## Before recording
 - Open one browser and keep the full journey in that browser. Bookings are local.
 - For the shared recording login, choose Log in and use the credentials from Marti’s team chat. Fresh browsers are supported; booking data is still local.

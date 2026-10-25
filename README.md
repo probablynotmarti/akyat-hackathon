@@ -1,5 +1,7 @@
 # Akyat
 
+**Final recording update:** [Fast payment, invitation, trust and safe-return walkthrough](docs/FINAL-DEMO-FEATURES.md). Pinatubo and Ulap start at 5/6 on a fresh/reset demo and lock automatically when you join.
+
 **Find your people. Find your peak.**
 
 [Open the live Vercel app](https://akyat-hackathon-marti-2026.vercel.app) · [Partner testing and release notes](docs/VERCEL-RELEASE.md)
